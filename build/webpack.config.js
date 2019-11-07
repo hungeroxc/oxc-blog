@@ -25,7 +25,9 @@ module.exports = {
         extensions: FILE_EXTENSIONS,
         modules: [resolve('src'), resolve('node_modules')],
         alias: {
-            '@views': resolve('src/containers/views')
+            '@views': resolve('src/containers/views'),
+            '@constants': resolve('src/constants'),
+            '@services': resolve('src/services')
         }
     },
     plugins: [...plugins],
