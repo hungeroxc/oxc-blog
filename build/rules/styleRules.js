@@ -1,13 +1,16 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const { resolve } = require('./../utils')
 const { cacheLoader, threadLoader } = require('./../loaders')
 const { isDev } = require('./../constants')
 
+const loader = isDev ? 'style-loader' : MiniCssExtractPlugin.loader
+
 module.exports = [
     {
         test: /\.scss$/,
         use: [
-            'style-loader',
+            loader,
             cacheLoader,
             threadLoader(2),
             'css-modules-typescript-loader',
@@ -25,6 +28,6 @@ module.exports = [
     {
         test: /\.css$/,
         include: [resolve('node_modules')],
-        use: ['css-loader']
+        use: [loader, 'css-loader']
     }
 ]
