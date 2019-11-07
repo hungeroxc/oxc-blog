@@ -1,5 +1,3 @@
-
-
 const plugins = require('./plugins')
 const jsRules = require('./rules/jsRules')
 const stylesRules = require('./rules/styleRules')
@@ -27,13 +25,13 @@ module.exports = {
         extensions: FILE_EXTENSIONS,
         modules: [resolve('src'), resolve('node_modules')],
         alias: {
-            '@views': resolve('src/containers/views'),
+            '@views': resolve('src/containers/views')
         }
     },
     plugins: [...plugins],
     module: {
         rules: [...jsRules, ...stylesRules]
-    },
+    }
     // 也可以采用externals减少common包大小, 不过在本项目中未采用
     // externals: {
     //     react: 'React',
@@ -41,4 +39,3 @@ module.exports = {
     //     axios: 'axios'
     // }
 }
-

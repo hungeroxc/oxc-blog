@@ -1,9 +1,12 @@
 import React from 'react'
-
-import styles from './index.scss'
+import { Button } from 'antd'
 
 const Test = () => {
-    return <div className={styles.test}>123</div>
+    return (
+        <div>
+            <Button type="primary">123</Button>
+        </div>
+    )
 }
 
 export default Test

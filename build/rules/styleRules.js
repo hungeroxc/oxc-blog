@@ -25,6 +25,21 @@ module.exports = [
             }
         ]
     },
+    // antd样式文件
+    {
+        test: /\.less$/,
+        use: [
+            loader,
+            cacheLoader,
+            'css-loader',
+            {
+                loader: 'less-loader',
+                options: {
+                    javascriptEnabled: true
+                }
+            }
+        ]
+    },
     {
         test: /\.css$/,
         include: [resolve('node_modules')],
