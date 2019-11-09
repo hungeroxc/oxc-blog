@@ -71,3 +71,5 @@ methods.forEach(v => {
             })
     }
 })
+
+export default http
