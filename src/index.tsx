@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Test from '@views/index'
+import App from '@views/App'
+import Test from '@views/Test'
 
 const render = () => {
-    ReactDOM.render(<Test />, document.querySelector('#app'))
+    ReactDOM.render(
+        <div>
+            <App />
+            <Test />
+        </div>,
+        document.querySelector('#app')
+    )
 }
 
 render()
