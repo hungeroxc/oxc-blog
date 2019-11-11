@@ -33,6 +33,7 @@
     "@types/qs": "^6.5.3",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",
+    "@types/react-router-dom": "^5.1.2",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "babel-loader": "^8.0.6",

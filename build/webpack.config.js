@@ -27,7 +27,8 @@ module.exports = {
         alias: {
             '@views': resolve('src/containers/views'),
             '@constants': resolve('src/constants'),
-            '@services': resolve('src/services')
+            '@services': resolve('src/services'),
+            '@shared': resolve('src/containers/shared')
         }
     },
     plugins: [...plugins],
