@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Form, Input, Button, Icon, message } from 'antd'
+import { Modal, Form, Input, Button, Icon } from 'antd'
 import { ModalProps } from 'antd/lib/modal'
 import { FormComponentProps } from 'antd/lib/form'
 
@@ -24,7 +24,7 @@ const AuthModal = ({ visible, form, authModalType, closeModal, triggerAuthModal 
                 setLoading(true)
                 try {
                     setLoading(false)
-                    // triggerAuthModal(false)
+                    triggerAuthModal(false)
                     console.log(err, value)
                 } catch (error) {
                     setLoading(false)
