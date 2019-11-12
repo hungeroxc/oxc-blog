@@ -3,6 +3,7 @@ const jsRules = require('./rules/jsRules')
 const stylesRules = require('./rules/styleRules')
 const { resolve } = require('./utils')
 const { FILE_EXTENSIONS, isDev, APP_ENV } = require('./constants')
+const optimization = require('./optimization')
 
 /**
  * @type {import('webpack').Configuration}
@@ -34,7 +35,8 @@ module.exports = {
     plugins: [...plugins],
     module: {
         rules: [...jsRules, ...stylesRules]
-    }
+    },
+    optimization
     // 也可以采用externals减少common包大小, 不过在本项目中未采用
     // externals: {
     //     react: 'React',
