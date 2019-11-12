@@ -9,6 +9,7 @@ const MenuItem = Menu.Item
 
 interface IProps extends RouteComponentProps {}
 
+// 此处导出只为处理基础组件，而不是router包裹后的组件
 const Nav = ({ history, location }: IProps) => {
     const goto = ({ key }: { key: string }) => {
         if (location.pathname === key) {
