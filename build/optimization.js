@@ -14,9 +14,9 @@ module.exports = isDev
               cacheGroups: {
                   default: false,
                   commons: {
-                      test: /[\\/]node_modules[\\/]/,
                       name: 'commons',
-                      chunks: 'initial'
+                      chunks: 'initial',
+                      minChunks: 2
                   },
                   react: {
                         test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
@@ -27,15 +27,15 @@ module.exports = isDev
                   antd: {
                       name: 'antd',
                       test: /[\\/]node_modules[\\/](antd)[\\/]/,
-                      chunks: 'all',
-                      priority: 9
+                      priority: 9,
+                      reuseExistingChunk: false
                   },
 
                   vendor: {
                       name: 'vendor',
                       test: /[\\/]node_modules[\\/](moment|axios)[\\/]/,
-                      chunks: 'all',
-                      priority: 10
+                      priority: 10,
+                      reuseExistingChunk: false
                   }
               }
           },
