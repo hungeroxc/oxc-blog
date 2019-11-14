@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
-import { Modal, Form, Input, Button, Icon } from 'antd'
+import { Modal, Form, Input, Button, Icon, message } from 'antd'
 import { ModalProps } from 'antd/lib/modal'
 import { FormComponentProps } from 'antd/lib/form'
+
+import { register, login } from '@services/api'
+
+const api = { register, login }
 
 const FormItem = Form.Item
 
@@ -23,9 +27,17 @@ const AuthModal = ({ visible, form, authModalType, closeModal, triggerAuthModal 
             if (!err) {
                 setLoading(true)
                 try {
-                    setLoading(false)
-                    triggerAuthModal(false)
-                    console.log(err, value)
+                    const res = await api[authModalType](value)
+                    if (res) {
+                        setLoading(false)
+                        triggerAuthModal(false)
+                        if (authModalType === 'login') {
+                            console.log(res)
+                            message.success('登陆成功')
+                        } else {
+                            message.success('注册成功')
+                        }
+                    }
                 } catch (error) {
                     setLoading(false)
                 }

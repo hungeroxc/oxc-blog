@@ -1,5 +1,9 @@
 import http from './http'
 
-export const test = (data = {}) => {
-    http.get('/test', data)
+export const register = (data = {}) => {
+    return http.post('register', data)
+}
+
+export function login(data = {}) {
+    return http.post('login', data)
 }
