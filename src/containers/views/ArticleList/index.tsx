@@ -3,7 +3,7 @@ import React from 'react'
 const ArticleList = () => {
     return (
         <div>
-            <div>ArticleList</div>
+            <div>ArticleListqwdqwdqwdqwd</div>
         </div>
     )
 }
