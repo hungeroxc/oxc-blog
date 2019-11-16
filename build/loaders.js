@@ -1,5 +1,5 @@
 const { resolve } = require('./utils')
-const { isDev } = require('./constants.js')
+const { IS_DEV } = require('./constants.js')
 
 const cacheLoader = {
     loader: 'cache-loader',
@@ -13,7 +13,7 @@ const cacheLoader = {
 const threadLoader = workerParallelJobs => {
     const options = { workerParallelJobs }
     // 该处只处于生产环境时候才设置poolTimeout为无限，否则生产环境打包完成后进程会被阻塞
-    if(isDev) {
+    if(IS_DEV) {
         Object.assign(options, { poolTimeout: Infinity })
     }
 

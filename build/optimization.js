@@ -1,9 +1,9 @@
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-const { isDev } = require('./constants.js')
+const { IS_DEV } = require('./constants.js')
 
-module.exports = isDev
+module.exports = IS_DEV
     ? {}
     : {
           runtimeChunk: {

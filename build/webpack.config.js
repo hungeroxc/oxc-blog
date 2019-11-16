@@ -2,7 +2,7 @@ const plugins = require('./plugins')
 const jsRules = require('./rules/jsRules')
 const stylesRules = require('./rules/styleRules')
 const { resolve } = require('./utils')
-const { FILE_EXTENSIONS, isDev, APP_ENV } = require('./constants')
+const { FILE_EXTENSIONS, IS_DEV, APP_ENV } = require('./constants')
 const optimization = require('./optimization')
 
 /**
@@ -15,8 +15,8 @@ module.exports = {
     },
     output: {
         path: resolve(`dist/${APP_ENV}/static`),
-        filename: isDev ? '[name].js' : 'js/[name].[chunkhash].js',
-        chunkFilename: isDev ? '[name].js' : 'js/[name].[id].[chunkhash].js',
+        filename: IS_DEV ? '[name].js' : 'js/[name].[chunkhash].js',
+        chunkFilename: IS_DEV ? '[name].js' : 'js/[name].[id].[chunkhash].js',
         publicPath: '/'
     },
     devServer: {
