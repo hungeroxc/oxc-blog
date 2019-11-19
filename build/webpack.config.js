@@ -30,7 +30,8 @@ module.exports = {
             '@constants': resolve('src/constants'),
             '@services': resolve('src/services'),
             '@shared': resolve('src/containers/shared'),
-            '@store': resolve('src/store')
+            '@store': resolve('src/store'),
+            '@utils': resolve('src/utils')
         }
     },
     plugins: [...plugins],

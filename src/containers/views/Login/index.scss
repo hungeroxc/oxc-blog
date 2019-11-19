@@ -1,0 +1,35 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: auto;
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+    background-color: #f0f2f5;
+    align-items: center;
+    justify-content: center;
+
+    .loginForm {
+        width: 368px;
+        margin-top: -200px;
+    }
+
+    .loginIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 368px;
+        animation: logoIcon infinite 20s linear;
+    }
+
+    @keyframes logoIcon {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

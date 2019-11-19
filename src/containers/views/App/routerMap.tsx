@@ -39,6 +39,24 @@ const Tags = () => {
     )
 }
 
+const Login = () => {
+    const Login = lazy(() => import(/* webpackChunkName: "login" */ '@views/Login'))
+    return (
+        <Suspense fallback={<PageLoading />}>
+            <Login />
+        </Suspense>
+    )
+}
+
+const Admin = () => {
+    const Admin = lazy(() => import(/* webpackChunkName: "admin" */ '@views/Admin'))
+    return (
+        <Suspense fallback={<PageLoading />}>
+            <Admin />
+        </Suspense>
+    )
+}
+
 export const homeMenu: RouterMenuItem = {
     path: '/',
     component: BlogLayout,
@@ -64,6 +82,18 @@ export const homeMenu: RouterMenuItem = {
     ]
 }
 
-const menu: RouterMenuItem[] = [homeMenu]
+export const AdminMenu: RouterMenuItem = {
+    path: 'admin',
+    component: Admin
+}
+
+const menu: RouterMenuItem[] = [
+    {
+        path: 'login',
+        component: Login
+    },
+    AdminMenu,
+    homeMenu
+]
 
 export default menu

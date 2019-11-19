@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Dropdown, Avatar, Menu } from 'antd'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
 import AuthModal from './AuthModal'
@@ -7,7 +8,7 @@ import { useStateValue, useDispatch } from '@store/user/index'
 
 const MenuItem = Menu.Item
 
-const UserInfo = () => {
+const UserInfo = ({ history }: RouteComponentProps) => {
     const [authVisible, setAuthVisible] = useState<boolean>(false)
     // 弹框类型
     const [authModalType, setAuthModalType] = useState<string>('login')
@@ -26,10 +27,15 @@ const UserInfo = () => {
         dispatch({ type: 'USER_LOGIN_OUT' })
     }
 
+    // 去admin页面
+    const gotoAdmin = () => {
+        history.push('/admin')
+    }
+
     const renderMenu = () => {
         return (
             <Menu>
-                {userInfo.auth === 2 && <MenuItem>管理中心</MenuItem>}
+                {userInfo.auth === 2 && <MenuItem onClick={gotoAdmin}>管理中心</MenuItem>}
                 <MenuItem onClick={logout}>退出登录</MenuItem>
             </Menu>
         )
@@ -69,4 +75,4 @@ const UserInfo = () => {
     )
 }
 
-export default UserInfo
+export default withRouter(UserInfo)
