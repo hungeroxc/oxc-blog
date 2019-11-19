@@ -82,7 +82,7 @@ export const homeMenu: RouterMenuItem = {
     ]
 }
 
-export const AdminMenu: RouterMenuItem = {
+export const adminMenu: RouterMenuItem = {
     path: 'admin',
     component: Admin
 }
@@ -92,7 +92,7 @@ const menu: RouterMenuItem[] = [
         path: 'login',
         component: Login
     },
-    AdminMenu,
+    adminMenu,
     homeMenu
 ]
 

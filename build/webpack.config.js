@@ -38,7 +38,8 @@ module.exports = {
     module: {
         rules: [...jsRules, ...stylesRules]
     },
-    optimization
+    optimization,
+    devtool: IS_DEV ? 'eval-source-map' : undefined
     // 也可以采用externals减少common包大小, 不过在本项目中未采用
     // externals: {
     //     react: 'React',

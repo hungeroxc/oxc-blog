@@ -1,0 +1,12 @@
+.adminContainer {
+    :global {
+        .ant-layout {
+            height: 100vh;
+        }
+
+        .ant-layout-content {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
