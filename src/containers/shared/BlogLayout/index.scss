@@ -102,9 +102,16 @@
 
     .headerUserInfo {
         float: right;
-        padding: 20px 40px 0 16px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        padding-top: 5px;
 
         .headerAvatar {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
             background-color: #1890ff;
             cursor: pointer;
         }

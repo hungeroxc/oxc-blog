@@ -29,7 +29,8 @@ module.exports = {
             '@views': resolve('src/containers/views'),
             '@constants': resolve('src/constants'),
             '@services': resolve('src/services'),
-            '@shared': resolve('src/containers/shared')
+            '@shared': resolve('src/containers/shared'),
+            '@store': resolve('src/store')
         }
     },
     plugins: [...plugins],

@@ -45,12 +45,6 @@ methods.forEach(v => {
                 return res
             },
             error => {
-                message.destroy()
-                if (!!error.response) {
-                    const err = error.response.data
-                    message.error(err.message)
-                    return
-                }
                 return Promise.reject(error)
             }
         )
@@ -67,9 +61,15 @@ methods.forEach(v => {
                 return res
             })
             .catch(err => {
+                // 错误集中处理
                 message.destroy()
-                const msg = err.message === 'Network Error' ? '网络错误' : '未知错误'
-                message.error(msg)
+                if (!!err.response) {
+                    const errData = err.response.data
+                    message.error(errData.message)
+                } else {
+                    const msg = err.message === 'Network Error' ? '网络错误' : '未知错误'
+                    message.error(msg)
+                }
                 return Promise.reject(err)
             })
     }

@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
 
 import menu from './routerMap'
+import { useDispatch } from '@store/user/index'
 
 const App = () => {
+    const dispatch = useDispatch()
+
+    const initUserInfo = () => {
+        const token = localStorage.getItem('token')
+        if (!!token) {
+            const { id, username, auth } = jwtDecode(localStorage.token)
+            dispatch({ type: 'USER_LOGIN', payload: { id, username, auth } })
+        } else {
+            localStorage.clear()
+        }
+    }
+
+    useEffect(() => {
+        initUserInfo()
+    }, [])
+
     const renderRoutes = (routeMenu, path: string) => {
         const children = []
         const renderRoute = (item, routePath: string) => {
