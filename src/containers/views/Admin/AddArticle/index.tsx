@@ -1,15 +1,29 @@
 import React, { useState } from 'react'
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 
 import styles from './index.scss'
 import EditArticle from '@shared/EditArticle'
+import { createArticle } from '@services/api'
 
 const AddArticle = () => {
     const [title, setTitle] = useState<string>('')
     const [inputValue, setInputValue] = useState<string>('')
 
-    const saveArticle = () => {
-        console.log(title, inputValue)
+    const saveArticle = async () => {
+        if (!title || !inputValue) {
+            return message.error('文章的标题和内容都是必须的')
+        }
+
+        const data = {
+            title,
+            content: inputValue
+        }
+        try {
+            await createArticle(data)
+            setTitle('')
+            setInputValue('')
+            message.success('新建文章成功')
+        } catch (error) {}
     }
 
     return (
