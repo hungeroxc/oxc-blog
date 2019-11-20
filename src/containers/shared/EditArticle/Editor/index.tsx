@@ -19,7 +19,7 @@ const Editor = ({ className, value, onChange }: IProps) => {
             <div className={styles.editorPane}>
                 <CodeMirror onChangeInput={onChange} value={value} />
             </div>
-            <div className={styles.editResult}>
+            <div className={classnames(styles.editResult, styles.markdown)}>
                 <div dangerouslySetInnerHTML={{ __html: markdownText }} />
             </div>
         </div>

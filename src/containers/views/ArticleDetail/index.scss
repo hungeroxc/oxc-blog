@@ -1,0 +1,27 @@
+@import 'markdown';
+
+.articleDetail {
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+    overflow: auto;
+    flex: 1;
+
+    .header {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e8e8e8;
+
+        .title {
+            color: #0d1a26;
+            font-size: 1.7em;
+            font-weight: 400;
+        }
+    }
+
+    .content {
+        flex: 1;
+        overflow: auto;
+        margin: 0;
+    }
+}

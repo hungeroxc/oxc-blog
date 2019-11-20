@@ -19,7 +19,6 @@ interface IProps {
 
 const ArticleItem = ({ data, getTargetArticleId }: IProps) => {
     const { title, content, id } = data
-    console.log(data)
     return (
         <div className={styles.articleItem}>
             <Divider orientation="left">

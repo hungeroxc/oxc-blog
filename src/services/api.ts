@@ -14,6 +14,11 @@ export const createArticle = (data = {}) => {
 }
 
 // 获取文章列表
-export function getArticleList(data = {}) {
+export const getArticleList = (data = {}) => {
     return http.get('article/list', data)
+}
+
+// 获取文章详情
+export const getArticleById = (data = {}) => {
+    return http.get('article/detail', data)
 }

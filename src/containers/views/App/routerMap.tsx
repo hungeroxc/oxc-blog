@@ -21,6 +21,15 @@ const ArticleList = () => {
     )
 }
 
+const ArticleDetail = () => {
+    const ArticleDetail = lazy(() => import(/* webpackChunkName: "article-detail" */ '@views/ArticleDetail'))
+    return (
+        <Suspense fallback={<PageLoading />}>
+            <ArticleDetail />
+        </Suspense>
+    )
+}
+
 const AboutMe = () => {
     const AboutMe = lazy(() => import(/* webpackChunkName: "about-me" */ '@views/AboutMe'))
     return (
@@ -105,6 +114,10 @@ export const homeMenu: RouterMenuItem = {
             title: '标签',
             component: Tags,
             icon: 'edit'
+        },
+        {
+            path: 'article-detail/:id',
+            component: ArticleDetail
         }
     ]
 }

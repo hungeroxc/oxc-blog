@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Pagination } from 'antd'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
 import { getArticleList } from '@services/api'
@@ -8,7 +9,7 @@ import Article, { ArticleItem } from './ArticleItem'
 
 const pageSize = 10
 
-const ArticleList = () => {
+const ArticleList = ({ history }: RouteComponentProps) => {
     const [loading, setLoading] = useState<boolean>(true)
     const [articleList, setArticleList] = useState<ArticleItem[]>([])
 
@@ -24,7 +25,6 @@ const ArticleList = () => {
         }
         try {
             const res = await getArticleList(data)
-            console.log(res)
             setArticleList(res.data.list instanceof Array ? res.data.list : [])
             setTotal(res.data.total)
             setLoading(false)
@@ -33,7 +33,7 @@ const ArticleList = () => {
 
     // 跳转文章详情
     const getTargetArticleId = (id: number) => {
-        console.log(id)
+        history.push(`/article-detail/${id}`)
     }
 
     useEffect(() => {
@@ -60,4 +60,4 @@ const ArticleList = () => {
     )
 }
 
-export default ArticleList
+export default withRouter(ArticleList)
