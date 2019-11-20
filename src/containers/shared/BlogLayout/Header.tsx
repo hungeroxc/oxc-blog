@@ -7,12 +7,14 @@ import HeaderLeft from './HeaderLeft'
 import Search from './Search'
 import UserInfo from './UserInfo'
 
-const Header = () => {
-    const left = { xxl: 4, xl: 5, lg: 5, sm: 4, xs: 24 }
+const Header = Layout.Header
+
+const BlogHeader = () => {
+    const responsiveLeft = { xxl: 4, xl: 5, lg: 5, sm: 4, xs: 24 }
     return (
-        <Layout className={styles.headerContainer}>
+        <Header className={styles.headerContainer}>
             <Row>
-                <Col {...left}>
+                <Col {...responsiveLeft}>
                     <HeaderLeft />
                 </Col>
                 <Col>
@@ -21,8 +23,8 @@ const Header = () => {
                     <Nav />
                 </Col>
             </Row>
-        </Layout>
+        </Header>
     )
 }
 
-export default Header
+export default BlogHeader

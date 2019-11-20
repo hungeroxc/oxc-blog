@@ -1,0 +1,65 @@
+@import 'markdown';
+
+.article {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 0;
+
+    .articleListWrapper {
+        display: flex;
+        flex: 1;
+        height: 0;
+    }
+
+    .articleList {
+        flex: 1;
+        padding: 0 30px;
+        overflow: auto;
+    }
+
+    .pagination {
+        background-color: white;
+        padding: 0 43px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .articleItem {
+        border: 1px solid #ebedf0;
+        padding: 16px 24px;
+        margin-bottom: 10px;
+        transition: all 0.2s linear;
+
+        &:hover {
+            background: #effbff;
+            box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
+            transform: translate3d(0, -5px 0);
+        }
+
+        .title {
+            color: #394d69;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.2;
+            cursor: pointer;
+
+            &:hover {
+                color: #48b2ff;
+            }
+        }
+
+        .createTime {
+            font-size: 0.5em;
+            padding-left: 20px;
+        }
+
+        .description {
+            cursor: pointer;
+            max-height: 260px;
+            overflow: hidden;
+        }
+    }
+}
