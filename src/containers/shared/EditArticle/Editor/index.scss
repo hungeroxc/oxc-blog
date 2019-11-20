@@ -4,7 +4,6 @@
     line-height: 1.5em;
     word-break: break-all;
     overflow: auto;
-    padding: 16px;
 }
 
 .editorWrapper {
@@ -36,12 +35,27 @@
             .CodeMirror {
                 flex: 1;
             }
+
+            .CodeMirror-sizer {
+                min-width: unset !important;
+            }
+
+            .CodeMirror-line {
+                & > :first-child {
+                    display: flex;
+                    flex-flow: row wrap;
+                    align-content: flex-start;
+                    word-break: break-all;
+                    white-space: pre-line;
+                }
+            }
         }
     }
 
     .editResult {
         background-color: white;
         border: 1px solid #ddd;
+        padding: 16px;
 
         @include pane;
     }
