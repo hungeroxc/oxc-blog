@@ -1,21 +1,25 @@
 import React, { useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import { Layout } from 'antd'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
-import { useStateValue } from '@store/user/index'
 import SiderMenu from './SiderMenu'
+import { useStateValue } from '@store/user/index'
 
 const LayoutSider = Layout.Sider
 
 const LayoutContent = Layout.Content
 
-const Admin = ({ history }: RouteComponentProps) => {
+interface IProps {
+    children?: React.ReactNode
+}
+
+const Admin = ({ children, history }: IProps & RouteComponentProps) => {
     const { userInfo } = useStateValue()
 
     useEffect(() => {
-        if (userInfo.auth !== 2) {
-            history.push('/login')
+        if (!userInfo || userInfo.auth === 1) {
+            history.replace('/login')
         }
     }, [])
 
@@ -25,12 +29,10 @@ const Admin = ({ history }: RouteComponentProps) => {
                 <SiderMenu />
             </LayoutSider>
             <Layout>
-                <LayoutContent>
-                    <div>123</div>
-                </LayoutContent>
+                <LayoutContent>{children}</LayoutContent>
             </Layout>
         </Layout>
     )
 }
 
-export default withRouter(Admin)
+export default Admin

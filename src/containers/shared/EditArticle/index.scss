@@ -1,0 +1,60 @@
+.editArticle {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .editor {
+        flex: 1;
+        height: 0;
+    }
+
+    .header {
+        margin-bottom: 20px;
+
+        .setInfo {
+            display: flex;
+            margin-bottom: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .label {
+                display: flex;
+                width: 50px;
+            }
+
+            .titleInput {
+                width: 300px;
+            }
+
+            .tagWrapper {
+                display: flex;
+                flex-flow: row wrap;
+
+                .tagItem {
+                    margin-bottom: 10px;
+                }
+            }
+
+            :global {
+                .ant-tag {
+                    height: 24px;
+                }
+            }
+
+            .newTag {
+                display: flex;
+                align-items: center;
+                color: white;
+                background-color: #1890ff;
+
+                :global {
+                    .anticon-close {
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

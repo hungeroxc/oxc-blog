@@ -1,0 +1,19 @@
+.addArticle {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 24px 16px;
+    padding: 16px;
+    flex: 1;
+
+    .editArticle {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer {
+        margin-top: 20px;
+        text-align: right;
+    }
+}

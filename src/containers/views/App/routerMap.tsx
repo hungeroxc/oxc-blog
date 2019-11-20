@@ -48,11 +48,38 @@ const Login = () => {
     )
 }
 
-const Admin = () => {
+const Admin = props => {
     const Admin = lazy(() => import(/* webpackChunkName: "admin" */ '@views/Admin'))
     return (
         <Suspense fallback={<PageLoading />}>
-            <Admin />
+            <Admin {...props} />
+        </Suspense>
+    )
+}
+
+const AddArticle = () => {
+    const AddArticle = lazy(() => import(/* webpackChunkName: "add-article" */ '@views/Admin/AddArticle'))
+    return (
+        <Suspense fallback={<PageLoading />}>
+            <AddArticle />
+        </Suspense>
+    )
+}
+
+const ArticleManager = () => {
+    const ArticleManager = lazy(() => import(/* webpackChunkName: "article-manager" */ '@views/Admin/ArticleManager'))
+    return (
+        <Suspense fallback={<PageLoading />}>
+            <ArticleManager />
+        </Suspense>
+    )
+}
+
+const UserManager = () => {
+    const UserManager = lazy(() => import(/* webpackChunkName: "user-manager" */ '@views/Admin/UserManager'))
+    return (
+        <Suspense fallback={<PageLoading />}>
+            <UserManager />
         </Suspense>
     )
 }
@@ -84,7 +111,27 @@ export const homeMenu: RouterMenuItem = {
 
 export const adminMenu: RouterMenuItem = {
     path: 'admin',
-    component: Admin
+    component: Admin,
+    children: [
+        {
+            path: '',
+            title: '文章管理',
+            component: ArticleManager,
+            icon: 'edit'
+        },
+        {
+            path: 'add',
+            title: '添加文章',
+            component: AddArticle,
+            icon: 'edit'
+        },
+        {
+            path: 'user',
+            title: '用户管理',
+            component: UserManager,
+            icon: 'edit'
+        }
+    ]
 }
 
 const menu: RouterMenuItem[] = [

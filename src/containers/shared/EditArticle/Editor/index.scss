@@ -1,0 +1,48 @@
+@mixin pane {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.5em;
+    word-break: break-all;
+    overflow: auto;
+    padding: 16px;
+}
+
+.editorWrapper {
+    display: flex;
+
+    .editorPane {
+        background-color: #272822;
+        margin-right: 16px;
+        display: flex;
+        flex-direction: column;
+
+        @include pane;
+
+        div {
+            &:first-child {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+        }
+
+        :global {
+            .react-codemirror2 {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            .CodeMirror {
+                flex: 1;
+            }
+        }
+    }
+
+    .editResult {
+        background-color: white;
+        border: 1px solid #ddd;
+
+        @include pane;
+    }
+}
