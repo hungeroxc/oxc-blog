@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 
 import menu from './routerMap'
 import { useDispatch } from '@store/user/index'
+import PageLoading from '@shared/PageLoading'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -50,7 +51,11 @@ const App = () => {
 
     const routesNode = renderRoutes(menu, '/')
 
-    return <Router>{routesNode}</Router>
+    return (
+        <Suspense fallback={<PageLoading />}>
+            <Router>{routesNode}</Router>
+        </Suspense>
+    )
 }
 
 export default App

@@ -4,24 +4,42 @@
     display: flex;
     flex-direction: column;
     padding: 0 30px;
-    overflow: auto;
+    // height: 0;
     flex: 1;
 
-    .header {
-        text-align: center;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #e8e8e8;
-
-        .title {
-            color: #0d1a26;
-            font-size: 1.7em;
-            font-weight: 400;
-        }
-    }
-
-    .content {
-        flex: 1;
+    .detailContainer {
+        display: flex;
+        // height: 100%;
         overflow: auto;
-        margin: 0;
+
+        .detailContent {
+            flex: 1;
+            // overflow: auto;
+            margin-right: 260px;
+
+            .header {
+                text-align: center;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #e8e8e8;
+
+                .title {
+                    color: #0d1a26;
+                    font-size: 1.7em;
+                    font-weight: 400;
+                }
+            }
+
+            .content {
+                flex: 1;
+                overflow: auto;
+                margin: 0;
+            }
+        }
+
+        .articleAnchor {
+            position: fixed;
+            width: 260px;
+            right: 15px;
+        }
     }
 }

@@ -12,10 +12,33 @@
         height: 0;
     }
 
-    .articleList {
+    .articleListContainer {
+        display: flex;
         flex: 1;
-        padding: 0 30px;
-        overflow: auto;
+
+        .articleList {
+            flex: 1;
+            padding: 0 30px;
+            overflow: auto;
+        }
+
+        .preView {
+            width: 260px;
+            list-style: none;
+            padding: 0 15px;
+
+            .previewTitle {
+                color: #8590a6;
+                cursor: pointer;
+                margin-bottom: 5px;
+                font-size: 15px;
+
+                &:hover {
+                    background: #f0f2f5;
+                    color: #40a9ff;
+                }
+            }
+        }
     }
 
     .pagination {

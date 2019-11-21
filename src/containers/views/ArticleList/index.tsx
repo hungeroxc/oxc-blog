@@ -6,6 +6,7 @@ import styles from './index.scss'
 import { getArticleList } from '@services/api'
 import PageLoading from '@shared/PageLoading'
 import Article, { ArticleItem } from './ArticleItem'
+import ListPreview from './ListPreview'
 
 const pageSize = 10
 
@@ -46,10 +47,13 @@ const ArticleList = ({ history }: RouteComponentProps) => {
                 {loading ? (
                     <PageLoading />
                 ) : (
-                    <div className={styles.articleList}>
-                        {articleList.map(item => (
-                            <Article getTargetArticleId={getTargetArticleId} key={item.id} data={item} />
-                        ))}
+                    <div className={styles.articleListContainer}>
+                        <div className={styles.articleList}>
+                            {articleList.map(item => (
+                                <Article getTargetArticleId={getTargetArticleId} key={item.id} data={item} />
+                            ))}
+                        </div>
+                        <ListPreview getTargetArticleId={getTargetArticleId} list={articleList} />
                     </div>
                 )}
             </div>

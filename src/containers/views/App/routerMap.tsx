@@ -1,6 +1,5 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy } from 'react'
 
-import PageLoading from '@shared/PageLoading'
 import BlogLayout from '@shared/BlogLayout'
 
 interface RouterMenuItem {
@@ -12,86 +11,23 @@ interface RouterMenuItem {
     isPrivate?: boolean
 }
 
-const ArticleList = () => {
-    const ArticleList = lazy(() => import(/* webpackChunkName: "article-list" */ '@views/ArticleList'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <ArticleList />
-        </Suspense>
-    )
-}
+const ArticleList = lazy(() => import(/* webpackChunkName: "article-list" */ '@views/ArticleList'))
 
-const ArticleDetail = () => {
-    const ArticleDetail = lazy(() => import(/* webpackChunkName: "article-detail" */ '@views/ArticleDetail'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <ArticleDetail />
-        </Suspense>
-    )
-}
+const ArticleDetail = lazy(() => import(/* webpackChunkName: "article-detail" */ '@views/ArticleDetail'))
 
-const AboutMe = () => {
-    const AboutMe = lazy(() => import(/* webpackChunkName: "about-me" */ '@views/AboutMe'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <AboutMe />
-        </Suspense>
-    )
-}
+const AboutMe = lazy(() => import(/* webpackChunkName: "about-me" */ '@views/AboutMe'))
 
-const Tags = () => {
-    const Tags = lazy(() => import(/* webpackChunkName: "tags" */ '@views/Tags'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <Tags />
-        </Suspense>
-    )
-}
+const Tags = lazy(() => import(/* webpackChunkName: "tags" */ '@views/Tags'))
 
-const Login = () => {
-    const Login = lazy(() => import(/* webpackChunkName: "login" */ '@views/Login'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <Login />
-        </Suspense>
-    )
-}
+const Login = lazy(() => import(/* webpackChunkName: "login" */ '@views/Login'))
 
-const Admin = props => {
-    const Admin = lazy(() => import(/* webpackChunkName: "admin" */ '@views/Admin'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <Admin {...props} />
-        </Suspense>
-    )
-}
+const Admin = lazy(() => import(/* webpackChunkName: "admin" */ '@views/Admin'))
 
-const AddArticle = () => {
-    const AddArticle = lazy(() => import(/* webpackChunkName: "add-article" */ '@views/Admin/AddArticle'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <AddArticle />
-        </Suspense>
-    )
-}
+const AddArticle = lazy(() => import(/* webpackChunkName: "add-article" */ '@views/Admin/AddArticle'))
 
-const ArticleManager = () => {
-    const ArticleManager = lazy(() => import(/* webpackChunkName: "article-manager" */ '@views/Admin/ArticleManager'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <ArticleManager />
-        </Suspense>
-    )
-}
+const ArticleManager = lazy(() => import(/* webpackChunkName: "article-manager" */ '@views/Admin/ArticleManager'))
 
-const UserManager = () => {
-    const UserManager = lazy(() => import(/* webpackChunkName: "user-manager" */ '@views/Admin/UserManager'))
-    return (
-        <Suspense fallback={<PageLoading />}>
-            <UserManager />
-        </Suspense>
-    )
-}
+const UserManager = lazy(() => import(/* webpackChunkName: "user-manager" */ '@views/Admin/UserManager'))
 
 export const homeMenu: RouterMenuItem = {
     path: '/',

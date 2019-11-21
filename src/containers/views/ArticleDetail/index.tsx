@@ -7,6 +7,7 @@ import styles from './index.scss'
 import PageLoading from '@shared/PageLoading'
 import { markdownToHtml } from '@utils/index'
 import { ArticleItem } from './../ArticleList/ArticleItem'
+import ArticleAnchor from './ArticleAnchor'
 
 const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
     const [loading, setLoading] = useState<boolean>(true)
@@ -33,15 +34,20 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
             {loading ? (
                 <PageLoading />
             ) : (
-                <>
-                    <div className={styles.header}>
-                        <h1 className={styles.title}>{data.title}</h1>
+                <div className={styles.detailContainer}>
+                    <div className={styles.detailContent}>
+                        <div className={styles.header}>
+                            <h1 className={styles.title}>{data.title}</h1>
+                        </div>
+                        <div
+                            className={classnames(styles.content, styles.markdown)}
+                            dangerouslySetInnerHTML={{ __html: content }}
+                        />
                     </div>
-                    <div
-                        className={classnames(styles.content, styles.markdown)}
-                        dangerouslySetInnerHTML={{ __html: content }}
-                    />
-                </>
+                    <div className={styles.articleAnchor}>
+                        <ArticleAnchor content={content} />
+                    </div>
+                </div>
             )}
         </div>
     )

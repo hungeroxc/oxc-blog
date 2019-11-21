@@ -41,16 +41,6 @@
             .CodeMirror-sizer {
                 min-width: unset !important;
             }
-
-            .CodeMirror-line {
-                & > :first-child {
-                    display: flex;
-                    flex-flow: row wrap;
-                    align-content: flex-start;
-                    word-break: break-all;
-                    white-space: pre-line;
-                }
-            }
         }
     }
 

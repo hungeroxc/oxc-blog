@@ -4,11 +4,14 @@ interface CssExports {
   'article': string;
   'articleItem': string;
   'articleList': string;
+  'articleListContainer': string;
   'articleListWrapper': string;
   'createTime': string;
   'description': string;
   'markdown': string;
   'pagination': string;
+  'preView': string;
+  'previewTitle': string;
   'title': string;
 }
 export const cssExports: CssExports;
