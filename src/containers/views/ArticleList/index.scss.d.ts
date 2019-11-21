@@ -11,6 +11,7 @@ interface CssExports {
   'markdown': string;
   'pagination': string;
   'preView': string;
+  'previewDivider': string;
   'previewTitle': string;
   'title': string;
 }

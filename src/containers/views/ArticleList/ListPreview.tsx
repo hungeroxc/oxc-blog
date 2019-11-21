@@ -12,7 +12,7 @@ interface IProps {
 const ListPreview = ({ list, getTargetArticleId }: IProps) => {
     return (
         <ul className={styles.preView}>
-            <Divider>文章列表</Divider>
+            <Divider className={styles.previewDivider}>文章列表</Divider>
             {list.map(item => (
                 <li onClick={() => getTargetArticleId(item.id)} className={styles.previewTitle} key={item.id}>
                     {item.title}

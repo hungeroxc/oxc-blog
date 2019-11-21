@@ -4,12 +4,10 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    height: 0;
 
     .articleListWrapper {
         display: flex;
         flex: 1;
-        height: 0;
     }
 
     .articleListContainer {
@@ -18,14 +16,21 @@
 
         .articleList {
             flex: 1;
-            padding: 0 30px;
+            padding: 0 20px;
             overflow: auto;
+            margin-right: 260px;
         }
 
         .preView {
+            position: fixed;
+            right: 15px;
             width: 260px;
             list-style: none;
             padding: 0 15px;
+
+            .previewDivider {
+                margin-top: 0;
+            }
 
             .previewTitle {
                 color: #8590a6;
@@ -43,11 +48,12 @@
 
     .pagination {
         background-color: white;
-        padding: 0 43px;
+        padding: 0 20px;
         height: 56px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        margin-right: 260px;
     }
 
     .articleItem {
