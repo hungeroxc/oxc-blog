@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Provider as UserProvider } from './user/index'
+// import { Provider as articleProvider } from './article/index'
 
 // 使用数据reducer进行Provider整合，避免直接出现如下情况
 /**

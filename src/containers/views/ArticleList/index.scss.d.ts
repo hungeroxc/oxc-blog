@@ -8,6 +8,7 @@ interface CssExports {
   'articleListWrapper': string;
   'createTime': string;
   'description': string;
+  'empty': string;
   'markdown': string;
   'pagination': string;
   'preView': string;

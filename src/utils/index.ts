@@ -16,3 +16,13 @@ export const markdownToHtml = (text: string) => {
         }
     })
 }
+
+export const decodeQuery = <T>(value: string): T => {
+    const params = {} as T
+    const paramsStr = value.replace(/\.*\?/, '')
+    paramsStr.split('&').forEach(v => {
+        const d = v.split('=')
+        params[d[0]] = d[1]
+    })
+    return params
+}
