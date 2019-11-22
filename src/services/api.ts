@@ -22,3 +22,13 @@ export const getArticleList = (data = {}) => {
 export const getArticleById = (data = {}) => {
     return http.get('article/detail', data)
 }
+
+// 删除文章
+export const deleteArticleById = (data = {}) => {
+    return http.delete('article/delete', data)
+}
+
+// 更新文章
+export const updateArticle = (data = {}) => {
+    return http.put('article/update', data)
+}
