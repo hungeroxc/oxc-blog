@@ -6,7 +6,6 @@
     flex: 1;
 
     .articleListWrapper {
-        display: flex;
         flex: 1;
     }
 
@@ -89,6 +88,20 @@
             cursor: pointer;
             max-height: 260px;
             overflow: hidden;
+        }
+    }
+
+    .otherInfo {
+        margin-top: 10px;
+
+        .tagContainer {
+            display: flex;
+
+            .tagIcon {
+                display: flex;
+                align-items: center;
+                margin-right: 8px;
+            }
         }
     }
 

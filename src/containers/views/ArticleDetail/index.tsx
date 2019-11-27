@@ -8,11 +8,20 @@ import PageLoading from '@shared/PageLoading'
 import { markdownToHtml } from '@utils/index'
 import { ArticleItem } from './../ArticleList/ArticleItem'
 import ArticleAnchor from './ArticleAnchor'
+import Icon from '@shared/Icon'
+import ArticleTags from '@shared/ArticleTags'
+import { useStateValue as useTagState } from '@store/tag/index'
+import { TagItem } from '@store/tag/types'
+import { getTagColor } from '@utils/index'
 
 const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
     const [loading, setLoading] = useState<boolean>(true)
     const [data, setData] = useState<ArticleItem>(null)
     const [content, setContent] = useState<string>('')
+
+    const [tempTagList, setTempTagList] = useState<TagItem[]>([])
+
+    const { isGetTagList, tagList } = useTagState()
 
     // 获取文章详情
     const getArticleDetail = async () => {
@@ -29,15 +38,27 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
         getArticleDetail()
     }, [])
 
+    useEffect(() => {
+        if (!loading && isGetTagList) {
+            setTempTagList(getTagColor(tagList, data.tags))
+        }
+    }, [isGetTagList, loading])
+
     return (
         <div className={styles.articleDetail}>
-            {loading ? (
+            {loading || !isGetTagList ? (
                 <PageLoading />
             ) : (
                 <div className={styles.detailContainer}>
                     <div className={styles.detailContent}>
                         <div className={styles.header}>
                             <h1 className={styles.title}>{data.title}</h1>
+                            <div className={styles.otherInfo}>
+                                <div className={styles.tags}>
+                                    <Icon className={styles.tagIcon} id="tags" width={16} height={16} color="#838a8c" />
+                                    <ArticleTags tags={tempTagList} />
+                                </div>
+                            </div>
                         </div>
                         <div
                             className={classnames(styles.content, styles.markdown)}

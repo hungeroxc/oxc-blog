@@ -8,11 +8,10 @@
 
     .detailContainer {
         display: flex;
-        overflow: auto;
+        margin-right: 260px;
 
         .detailContent {
-            flex: 1;
-            margin-right: 260px;
+            width: 100%;
 
             .header {
                 text-align: center;
@@ -23,6 +22,21 @@
                     color: #0d1a26;
                     font-size: 1.7em;
                     font-weight: 400;
+                }
+
+                .otherInfo {
+                    display: flex;
+                    justify-content: center;
+
+                    .tags {
+                        display: flex;
+
+                        .tagIcon {
+                            display: flex;
+                            align-items: center;
+                            margin-right: 8px;
+                        }
+                    }
                 }
             }
 

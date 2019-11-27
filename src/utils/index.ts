@@ -1,6 +1,8 @@
 import marked from 'marked'
 import hljs from 'highlight.js'
 
+import { TagItem } from '@store/tag/types'
+
 export const markdownToHtml = (text: string) => {
     return marked(text, {
         renderer: new marked.Renderer(),
@@ -25,4 +27,16 @@ export const decodeQuery = <T>(value: string): T => {
         params[d[0]] = d[1]
     })
     return params
+}
+
+export const getTagColor = (tagList: TagItem[], tags: { id: number; value: string }[]) => {
+    const list = []
+    tagList.forEach(item => {
+        tags.forEach(v => {
+            if (v.id === item.id) {
+                list.push(item)
+            }
+        })
+    })
+    return list
 }

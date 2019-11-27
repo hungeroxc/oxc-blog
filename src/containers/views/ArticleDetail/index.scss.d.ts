@@ -8,6 +8,9 @@ interface CssExports {
   'detailContent': string;
   'header': string;
   'markdown': string;
+  'otherInfo': string;
+  'tagIcon': string;
+  'tags': string;
   'title': string;
 }
 export const cssExports: CssExports;

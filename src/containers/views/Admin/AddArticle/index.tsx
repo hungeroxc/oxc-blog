@@ -8,6 +8,8 @@ import { createArticle } from '@services/api'
 const AddArticle = () => {
     const [title, setTitle] = useState<string>('')
     const [inputValue, setInputValue] = useState<string>('')
+    // 标签
+    const [selectedTags, setSelectedTags] = useState<string[]>([])
 
     const saveArticle = async () => {
         if (!title || !inputValue) {
@@ -16,12 +18,14 @@ const AddArticle = () => {
 
         const data = {
             title,
-            content: inputValue
+            content: inputValue,
+            tags: selectedTags
         }
         try {
             await createArticle(data)
             setTitle('')
             setInputValue('')
+            setSelectedTags([])
             message.success('新建文章成功')
         } catch (error) {}
     }
@@ -34,6 +38,8 @@ const AddArticle = () => {
                     title={title}
                     changeInputValue={setInputValue}
                     changeTitle={setTitle}
+                    selectedTags={selectedTags}
+                    setSelectedTags={setSelectedTags}
                 />
             </div>
             <div className={styles.footer}>

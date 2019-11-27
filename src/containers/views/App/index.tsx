@@ -3,17 +3,19 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 
 import menu from './routerMap'
-import { useDispatch } from '@store/user/index'
+import { useDispatch as useUserDispatch } from '@store/user/index'
+import { useDispatch as useTagDispatch } from '@store/tag/index'
 import PageLoading from '@shared/PageLoading'
+import { getTagList as getTagListApi } from '@services/api'
 
 const App = () => {
-    const dispatch = useDispatch()
+    const userDispatch = useUserDispatch()
 
     const initUserInfo = () => {
         const token = localStorage.getItem('token')
         if (!!token) {
             const { id, username, auth } = jwtDecode(localStorage.token)
-            dispatch({ type: 'USER_LOGIN', payload: { id, username, auth } })
+            userDispatch({ type: 'USER_LOGIN', payload: { id, username, auth } })
         } else {
             localStorage.clear()
         }
@@ -21,6 +23,25 @@ const App = () => {
 
     useEffect(() => {
         initUserInfo()
+    }, [])
+
+    const tagDispatch = useTagDispatch()
+
+    const getTagList = async () => {
+        try {
+            const res = await getTagListApi()
+            tagDispatch({
+                type: 'SET_TAG_LIST',
+                payload: {
+                    list: res.data instanceof Array ? res.data : [],
+                    isGetTagList: true
+                }
+            })
+        } catch (error) {}
+    }
+
+    useEffect(() => {
+        getTagList()
     }, [])
 
     const renderRoutes = (routeMenu, path: string) => {

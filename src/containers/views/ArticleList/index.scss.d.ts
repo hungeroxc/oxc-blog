@@ -10,10 +10,13 @@ interface CssExports {
   'description': string;
   'empty': string;
   'markdown': string;
+  'otherInfo': string;
   'pagination': string;
   'preView': string;
   'previewDivider': string;
   'previewTitle': string;
+  'tagContainer': string;
+  'tagIcon': string;
   'title': string;
 }
 export const cssExports: CssExports;

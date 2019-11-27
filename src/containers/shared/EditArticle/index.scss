@@ -9,8 +9,14 @@
         height: 0;
     }
 
+    .label {
+        display: flex;
+        align-items: center;
+        width: 50px;
+    }
+
     .header {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
 
         .setInfo {
             display: flex;
@@ -20,42 +26,27 @@
                 margin-bottom: 0;
             }
 
-            .label {
-                display: flex;
-                width: 50px;
-            }
-
             .titleInput {
                 width: 300px;
             }
+        }
+    }
 
-            .tagWrapper {
+    .tags {
+        display: flex;
+        margin-bottom: 15px;
+
+        :global {
+            .ant-tag {
                 display: flex;
-                flex-flow: row wrap;
-
-                .tagItem {
-                    margin-bottom: 10px;
-                }
-            }
-
-            :global {
-                .ant-tag {
-                    height: 24px;
-                }
-            }
-
-            .newTag {
-                display: flex;
+                height: 24px;
                 align-items: center;
-                color: white;
-                background-color: #1890ff;
-
-                :global {
-                    .anticon-close {
-                        color: white;
-                    }
-                }
             }
+        }
+
+        .newTagBtn {
+            background-color: '#fff';
+            border-style: dashed;
         }
     }
 }

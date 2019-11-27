@@ -11,17 +11,18 @@ import React from 'react'
  */
 interface IProps {
     className?: string
-    style?: React.CSSProperties
-    fontSize?: number
     onClick?: (e?: React.MouseEvent) => void
     id: string
+    color?: string
+    width?: number
+    height?: number
 }
 
-const Icon: React.FC<IProps> = ({ className, style, onClick, fontSize, id }) => {
+const Icon: React.FC<IProps> = ({ className, onClick, id, color, width, height }) => {
     return (
-        <span className={className} style={style} onClick={onClick}>
-            <svg className="icon" style={{ fontSize }}>
-                <use xlinkHref={`#${id}`} />
+        <span onClick={onClick} className={className}>
+            <svg className="icon" style={{ fill: color, width, height }}>
+                <use xlinkHref={`#icon-${id}`} />
             </svg>
         </span>
     )

@@ -1,17 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Input } from 'antd'
 
 import styles from './index.scss'
 import Editor from './Editor'
+import Tags from './Tags'
+import { useStateValue as useTagStateValue } from '@store/tag/index'
 
 interface IProps {
     changeInputValue: (v: string) => void
     changeTitle: (title: string) => void
     title: string
     inputValue: string
+    selectedTags: string[]
+    setSelectedTags: (tags: string[]) => void
 }
 
-const EditArticle = ({ changeInputValue, changeTitle, title, inputValue }: IProps) => {
+const EditArticle = ({ changeInputValue, changeTitle, title, inputValue, selectedTags, setSelectedTags }: IProps) => {
+    const [tempTagList, setTempTagList] = useState<string[]>([])
+
+    const { tagList } = useTagStateValue()
+
+    // 从store中拿到所有tag
+
+    useEffect(() => {
+        console.log(tagList)
+        setTempTagList(tagList.map(tag => tag.value))
+    }, [])
+
     return (
         <div className={styles.editArticle}>
             <div className={styles.header}>
@@ -25,6 +40,12 @@ const EditArticle = ({ changeInputValue, changeTitle, title, inputValue }: IProp
                     />
                 </div>
             </div>
+            <Tags
+                tempTagList={tempTagList}
+                setTempTagList={setTempTagList}
+                selectedTags={selectedTags}
+                setSelectedTags={setSelectedTags}
+            />
             <Editor onChange={changeInputValue} value={inputValue} className={styles.editor} />
         </div>
     )

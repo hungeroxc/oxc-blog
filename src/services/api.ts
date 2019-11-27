@@ -8,6 +8,15 @@ export const login = (data = {}) => {
     return http.post('login', data)
 }
 
+export const getUserList = (data = {}) => {
+    return http.get('user/list', data)
+}
+
+// 删除用户
+export const deleteUserById = (data = {}) => {
+    return http.delete('user/delete', data)
+}
+
 // 创建文章
 export const createArticle = (data = {}) => {
     return http.post('article/create', data)
@@ -31,4 +40,9 @@ export const deleteArticleById = (data = {}) => {
 // 更新文章
 export const updateArticle = (data = {}) => {
     return http.put('article/update', data)
+}
+
+// 获取标签列表
+export const getTagList = (data = {}) => {
+    return http.get('tag/list', data)
 }

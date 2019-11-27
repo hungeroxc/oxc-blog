@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 0;
+    padding: 0 20px;
+    background-color: white;
+    margin: 20px;
+
+    .dataList {
+        flex: 1;
+        overflow: auto;
+    }
+
+    .filter {
+        height: 100px;
+        display: flex;
+        align-items: center;
+
+        .searchItem {
+            margin-right: 20px;
+            display: flex;
+
+            .label {
+                display: flex;
+                align-items: center;
+                width: 70px;
+            }
+        }
+    }
+
+    .operation {
+        display: flex;
+        flex-direction: column;
+
+        .operationItem {
+            cursor: pointer;
+            margin-bottom: 5px;
+            width: 40px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &:hover {
+                color: #1890ff;
+            }
+        }
+    }
+}
