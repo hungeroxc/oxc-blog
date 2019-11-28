@@ -29,6 +29,8 @@ const ArticleManager = lazy(() => import(/* webpackChunkName: "article-manager" 
 
 const UserManager = lazy(() => import(/* webpackChunkName: "user-manager" */ '@views/Admin/UserManager'))
 
+const TagWithArticle = lazy(() => import(/* webpackChunkName: "tag-with-article" */ '@views/TagWithArticle'))
+
 export const homeMenu: RouterMenuItem = {
     path: '/',
     component: BlogLayout,
@@ -49,6 +51,11 @@ export const homeMenu: RouterMenuItem = {
             path: '/tag',
             title: '标签',
             component: Tags,
+            icon: 'edit'
+        },
+        {
+            path: '/tag/:tag',
+            component: TagWithArticle,
             icon: 'edit'
         },
         {

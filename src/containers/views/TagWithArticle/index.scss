@@ -1,0 +1,32 @@
+.tagWithArticleWrapper {
+    flex: 1;
+    margin-top: 40px;
+    margin-left: 20px;
+
+    .loading {
+        flex: 1;
+    }
+
+    .timelineWrapper {
+        margin-top: 5px;
+
+        .listTitle {
+            font-size: 22px;
+            position: relative;
+            top: -5px;
+        }
+
+        .infoWrapper {
+            display: flex;
+
+            .createdAt {
+                margin-right: 15px;
+            }
+
+            .title {
+                cursor: pointer;
+                color: #1890ff;
+            }
+        }
+    }
+}

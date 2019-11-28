@@ -46,3 +46,8 @@ export const updateArticle = (data = {}) => {
 export const getTagList = (data = {}) => {
     return http.get('tag/list', data)
 }
+
+// 通过标签获取文章列表
+export const getArticleListByTag = (data = {}) => {
+    return http.get('tag/articleList', data)
+}

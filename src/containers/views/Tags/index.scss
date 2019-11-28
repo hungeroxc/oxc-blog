@@ -1,0 +1,38 @@
+.tagPage {
+    padding: 40px;
+
+    .tagsWrapper {
+        .header {
+            display: flex;
+            flex-direction: column;
+
+            .title {
+                font-size: 1.7em;
+                text-align: center;
+                word-break: break-word;
+                font-weight: 400;
+                margin-bottom: 20px;
+            }
+
+            .info {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        .badge {
+            margin-right: 30px;
+            margin-bottom: 20px;
+
+            :global {
+                .ant-badge-count {
+                    right: 5px;
+                }
+            }
+
+            .tagItem {
+                cursor: pointer;
+            }
+        }
+    }
+}
