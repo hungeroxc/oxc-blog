@@ -15,6 +15,8 @@ interface IProps {
 const updateArticle = ({ editTarget, triggerShowEditArticle, getArticleList }: IProps) => {
     const [title, setTitle] = useState<string>('')
     const [inputValue, setInputValue] = useState<string>('')
+    // 标签
+    const [selectedTags, setSelectedTags] = useState<string[]>([])
 
     // 保存
     const save = async () => {
@@ -22,7 +24,8 @@ const updateArticle = ({ editTarget, triggerShowEditArticle, getArticleList }: I
             const data = {
                 title,
                 content: inputValue,
-                id: editTarget.id
+                id: editTarget.id,
+                tags: selectedTags
             }
             await updateArticleApi(data)
             triggerShowEditArticle(false)
@@ -34,12 +37,20 @@ const updateArticle = ({ editTarget, triggerShowEditArticle, getArticleList }: I
     useEffect(() => {
         setTitle(editTarget.title)
         setInputValue(editTarget.content)
+        setSelectedTags(editTarget.tags.map(item => item.value))
     }, [])
 
     return (
         <div className={styles.updateArticle}>
             <div className={styles.editor}>
-                <Editor changeTitle={setTitle} changeInputValue={setInputValue} title={title} inputValue={inputValue} />
+                <Editor
+                    selectedTags={selectedTags}
+                    setSelectedTags={setSelectedTags}
+                    changeTitle={setTitle}
+                    changeInputValue={setInputValue}
+                    title={title}
+                    inputValue={inputValue}
+                />
             </div>
             <div className={styles.footer}>
                 <Button onClick={() => triggerShowEditArticle(false)} className={styles.operationItem}>

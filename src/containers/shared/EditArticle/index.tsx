@@ -23,7 +23,6 @@ const EditArticle = ({ changeInputValue, changeTitle, title, inputValue, selecte
     // 从store中拿到所有tag
 
     useEffect(() => {
-        console.log(tagList)
         setTempTagList(tagList.map(tag => tag.value))
     }, [])
 

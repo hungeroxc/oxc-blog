@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Input, Button, Popconfirm } from 'antd'
+import { Table, Input, Button, Popconfirm, Tag } from 'antd'
 import { AutoSizer } from 'react-virtualized/dist/es/AutoSizer'
 import { PaginationConfig, SorterResult } from 'antd/lib/table'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -8,6 +8,8 @@ import styles from './index.scss'
 import { ArticleItem } from '@views/ArticleList/ArticleItem'
 import { getArticleList, deleteArticleById } from '@services/api'
 import UpdateArticle from './UpdateArticle'
+import { getTagColor } from '@utils/index'
+import { useStateValue as useTagsState } from '@store/tag'
 
 const { Column } = Table
 
@@ -30,6 +32,8 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     // 编辑文章
     const [isShowEdit, setIsShowEdit] = useState<boolean>(false)
     const [editTarget, setEditTarget] = useState<ArticleItem>(null)
+
+    const { tagList } = useTagsState()
 
     const getList = async () => {
         setLoading(true)
@@ -93,6 +97,32 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     const onSearch = () => {
         setPage(1)
         setCurrentKeyword(keyword)
+    }
+
+    // 去tag文章页面
+    const gotoTagWithArticle = (value: string) => {
+        history.push(`/tag/${value}`)
+    }
+
+    // 渲染标签相关
+    const renderTags = (article: ArticleItem) => {
+        const tempTagList = getTagColor(tagList, article.tags)
+        return (
+            <>
+                {tempTagList.map(item => {
+                    return (
+                        <Tag
+                            className={styles.tag}
+                            onClick={() => gotoTagWithArticle(item.value)}
+                            color={item.color}
+                            key={item.id}
+                        >
+                            {item.value}
+                        </Tag>
+                    )
+                })}
+            </>
+        )
     }
 
     // 渲染表格中的操作
@@ -160,9 +190,16 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
                                     pagination={pagination}
                                     dataSource={list}
                                     loading={loading}
-                                    scroll={{ y: height - 220, x: 700 }}
+                                    scroll={{ y: height - 220, x: 1200 }}
+                                    bordered
                                 >
                                     <Column<ArticleItem> width={200} key="title" dataIndex="title" title="标题" />
+                                    <Column<ArticleItem>
+                                        width={500}
+                                        key="tags"
+                                        title="标签"
+                                        render={(article: ArticleItem) => renderTags(article)}
+                                    />
                                     <Column<ArticleItem>
                                         sorter
                                         width={200}

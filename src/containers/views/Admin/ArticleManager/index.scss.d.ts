@@ -10,6 +10,7 @@ interface CssExports {
   'operation': string;
   'operationItem': string;
   'searchItem': string;
+  'tag': string;
   'updateArticle': string;
 }
 export const cssExports: CssExports;

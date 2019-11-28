@@ -29,6 +29,11 @@
         }
     }
 
+    .tag {
+        cursor: pointer;
+        margin-bottom: 15px;
+    }
+
     .operation {
         display: flex;
         flex-direction: column;
