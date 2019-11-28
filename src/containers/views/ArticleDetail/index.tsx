@@ -53,12 +53,20 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
                     <div className={styles.detailContent}>
                         <div className={styles.header}>
                             <h1 className={styles.title}>{data.title}</h1>
-                            <div className={styles.otherInfo}>
-                                <div className={styles.tags}>
-                                    <Icon className={styles.tagIcon} id="tags" width={16} height={16} color="#838a8c" />
-                                    <ArticleTags tags={tempTagList} />
+                            {!!tempTagList.length && (
+                                <div className={styles.otherInfo}>
+                                    <div className={styles.tags}>
+                                        <Icon
+                                            className={styles.tagIcon}
+                                            id="tags"
+                                            width={16}
+                                            height={16}
+                                            color="#838a8c"
+                                        />
+                                        <ArticleTags tags={tempTagList} />
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                         <div
                             className={classnames(styles.content, styles.markdown)}
