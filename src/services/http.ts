@@ -30,6 +30,10 @@ methods.forEach(v => {
         // 请求处理
         instance.interceptors.request.use(
             cfg => {
+                const token = localStorage.getItem('token')
+                if (!!token) {
+                    cfg.headers.common['Authorization'] = 'Bearer ' + token
+                }
                 return cfg
             },
             error => {
