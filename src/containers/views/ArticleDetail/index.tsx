@@ -26,6 +26,7 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
     // 获取文章详情
     const getArticleDetail = async () => {
         const { id } = match.params
+        setLoading(true)
         try {
             const res = await getArticleById({ id })
             setData(res.data)
@@ -36,7 +37,7 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
 
     useEffect(() => {
         getArticleDetail()
-    }, [])
+    }, [match.params.id])
 
     useEffect(() => {
         if (!loading && isGetTagList) {

@@ -3,6 +3,7 @@ import { Layout, Col, Row } from 'antd'
 
 import styles from './index.scss'
 import Header from './Header'
+import SiderBar from './SiderBar'
 import PageLoading from '@shared/PageLoading'
 
 const BlogLayout: React.FC = ({ children }) => {
@@ -14,7 +15,7 @@ const BlogLayout: React.FC = ({ children }) => {
             <Header />
             <Row className={styles.mainWrapper}>
                 <Col {...siderLayout}>
-                    <div>123</div>
+                    <SiderBar />
                 </Col>
                 <Col className={styles.rightCol} {...contentLayout}>
                     <div className={styles.contentLayout}>

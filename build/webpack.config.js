@@ -1,6 +1,7 @@
 const plugins = require('./plugins')
 const jsRules = require('./rules/jsRules')
 const stylesRules = require('./rules/styleRules')
+const fileRules = require('./rules/fileRules')
 const { resolve } = require('./utils')
 const { FILE_EXTENSIONS, IS_DEV, APP_ENV } = require('./constants')
 const optimization = require('./optimization')
@@ -31,12 +32,13 @@ module.exports = {
             '@services': resolve('src/services'),
             '@shared': resolve('src/containers/shared'),
             '@store': resolve('src/store'),
-            '@utils': resolve('src/utils')
+            '@utils': resolve('src/utils'),
+            '@assets': resolve('src/assets')
         }
     },
     plugins: [...plugins],
     module: {
-        rules: [...jsRules, ...stylesRules]
+        rules: [...jsRules, ...stylesRules, ...fileRules]
     },
     optimization,
     devtool: IS_DEV ? 'eval-source-map' : undefined

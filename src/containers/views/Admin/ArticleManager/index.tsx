@@ -28,8 +28,8 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     // 筛选相关
     const [keyword, setKeyword] = useState<string>('')
     const [currentKeyword, setCurrentKeyword] = useState<string>('')
-    const [tagValue, setTagValue] = useState<string>('')
-    const [currentTagValue, setCurrentTagValue] = useState<string>('')
+    const [tagValue, setTagValue] = useState<string>(undefined)
+    const [currentTagValue, setCurrentTagValue] = useState<string>(undefined)
     // 排序
     const [sortName, setSortName] = useState<string>(null)
     const [sortType, setSortType] = useState<sortTypeType>(null)
@@ -51,6 +51,7 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
         }
         try {
             const res = await getArticleList(data)
+            console.log(res.data)
             if (res.data.list instanceof Array) {
                 if (res.data.list.length === 0 && res.data.total > 0) {
                     setPage(page - 1)
@@ -106,7 +107,7 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     }
 
     const selectTag = (tagId: string) => {
-        const targetValue = !!tagId ? tagList.find(item => item.id === Number(tagId)).value : ''
+        const targetValue = !!tagId ? tagList.find(item => item.id === Number(tagId)).value : undefined
         setTagValue(targetValue)
     }
 
@@ -215,7 +216,7 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
                                     pagination={pagination}
                                     dataSource={list}
                                     loading={loading}
-                                    scroll={{ y: height - 220, x: 1200 }}
+                                    scroll={{ y: height - 220, x: 1340 }}
                                     bordered
                                 >
                                     <Column<ArticleItem> width={200} key="title" dataIndex="title" title="标题" />
@@ -224,6 +225,13 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
                                         key="tags"
                                         title="标签"
                                         render={(article: ArticleItem) => renderTags(article)}
+                                    />
+                                    <Column<ArticleItem>
+                                        width={120}
+                                        key="viewCount"
+                                        sorter
+                                        title="浏览数"
+                                        dataIndex="viewCount"
                                     />
                                     <Column<ArticleItem>
                                         sorter
@@ -242,7 +250,7 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
                                     <Column<ArticleItem>
                                         key="operation"
                                         title="操作"
-                                        width={100}
+                                        width={120}
                                         render={(record: ArticleItem) => renderOperation(record)}
                                     />
                                 </Table>

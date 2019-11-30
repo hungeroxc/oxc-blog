@@ -38,7 +38,7 @@ const TagWithArticle = ({ match, history }: RouteComponentProps<{ tag: string }>
 
     useEffect(() => {
         getList()
-    }, [])
+    }, [params.tag])
     return (
         <div className={styles.tagWithArticleWrapper}>
             {loading ? (
