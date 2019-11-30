@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Input, Button, Popconfirm, Tag } from 'antd'
+import { Table, Input, Button, Popconfirm, Tag, Select } from 'antd'
 import { AutoSizer } from 'react-virtualized/dist/es/AutoSizer'
 import { PaginationConfig, SorterResult } from 'antd/lib/table'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -12,6 +12,8 @@ import { getTagColor } from '@utils/index'
 import { useStateValue as useTagsState } from '@store/tag'
 
 const { Column } = Table
+
+const { Option } = Select
 
 const pageSize = 10
 
@@ -26,6 +28,8 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     // 筛选相关
     const [keyword, setKeyword] = useState<string>('')
     const [currentKeyword, setCurrentKeyword] = useState<string>('')
+    const [tagValue, setTagValue] = useState<string>('')
+    const [currentTagValue, setCurrentTagValue] = useState<string>('')
     // 排序
     const [sortName, setSortName] = useState<string>(null)
     const [sortType, setSortType] = useState<sortTypeType>(null)
@@ -42,7 +46,8 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
             pageSize,
             keyword: currentKeyword,
             sortName,
-            sortType
+            sortType,
+            tag: currentTagValue
         }
         try {
             const res = await getArticleList(data)
@@ -97,6 +102,12 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     const onSearch = () => {
         setPage(1)
         setCurrentKeyword(keyword)
+        setCurrentTagValue(tagValue)
+    }
+
+    const selectTag = (tagId: string) => {
+        const targetValue = !!tagId ? tagList.find(item => item.id === Number(tagId)).value : ''
+        setTagValue(targetValue)
     }
 
     // 去tag文章页面
@@ -149,7 +160,7 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
 
     useEffect(() => {
         getList()
-    }, [page, currentKeyword, sortName, sortType])
+    }, [page, currentKeyword, sortName, sortType, currentTagValue])
 
     const pagination = {
         total,
@@ -176,6 +187,20 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
                                 onChange={e => setKeyword(e.target.value)}
                                 placeholder="请输入标题"
                             />
+                        </div>
+                        <div className={styles.searchItem}>
+                            <div className={styles.label}>标签:</div>
+                            <Select
+                                placeholder="请选择标签"
+                                allowClear
+                                value={tagValue}
+                                onChange={selectTag}
+                                className={styles.selectTag}
+                            >
+                                {tagList.map(item => (
+                                    <Option key={item.id}>{item.value}</Option>
+                                ))}
+                            </Select>
                         </div>
                         <Button onClick={onSearch} type="primary">
                             搜索

@@ -10,6 +10,7 @@ interface CssExports {
   'operation': string;
   'operationItem': string;
   'searchItem': string;
+  'selectTag': string;
   'tag': string;
   'updateArticle': string;
 }

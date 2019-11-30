@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Timeline } from 'antd'
 
-import { getArticleListByTag } from '@services/api'
+import { getArticleList } from '@services/api'
 import PageLoading from '@shared/PageLoading'
 import styles from './index.scss'
 
@@ -23,12 +23,11 @@ const TagWithArticle = ({ match, history }: RouteComponentProps<{ tag: string }>
     const getList = async () => {
         setLoading(true)
         try {
-            const res = await getArticleListByTag({
+            const res = await getArticleList({
                 tag: params.tag
             })
             setList(res.data.list instanceof Array ? res.data.list : [])
             setLoading(false)
-            console.log(res.data.list)
         } catch (error) {}
     }
 

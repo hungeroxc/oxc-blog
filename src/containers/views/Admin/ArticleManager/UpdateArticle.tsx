@@ -9,7 +9,7 @@ import { updateArticle as updateArticleApi } from '@services/api'
 interface IProps {
     editTarget: ArticleItem
     triggerShowEditArticle: (isShow: boolean, targetArticle?: ArticleItem) => void
-    getArticleList: (initPage?: boolean) => void
+    getArticleList: () => void
 }
 
 const updateArticle = ({ editTarget, triggerShowEditArticle, getArticleList }: IProps) => {
