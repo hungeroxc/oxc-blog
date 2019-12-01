@@ -1,6 +1,7 @@
 import React, { useEffect, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
+import moment from 'moment'
 
 import menu from './routerMap'
 import { useDispatch as useUserDispatch } from '@store/user/index'
@@ -14,8 +15,14 @@ const App = () => {
     const initUserInfo = () => {
         const token = localStorage.getItem('token')
         if (!!token) {
-            const { id, username, auth } = jwtDecode(localStorage.token)
-            userDispatch({ type: 'USER_LOGIN', payload: { id, username, auth } })
+            const { id, username, auth, exp } = jwtDecode(localStorage.token)
+            const nowUnixTime = moment().unix()
+            // 时间戳失效重新登录
+            if (nowUnixTime > exp) {
+                localStorage.clear()
+            } else {
+                userDispatch({ type: 'USER_LOGIN', payload: { id, username, auth } })
+            }
         } else {
             localStorage.clear()
         }

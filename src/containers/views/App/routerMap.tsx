@@ -72,7 +72,7 @@ export const adminMenu: RouterMenuItem = {
             path: '',
             title: '文章管理',
             component: ArticleManager,
-            icon: 'edit'
+            icon: 'home'
         },
         {
             path: 'add',
@@ -84,7 +84,7 @@ export const adminMenu: RouterMenuItem = {
             path: 'user',
             title: '用户管理',
             component: UserManager,
-            icon: 'edit'
+            icon: 'user'
         }
     ]
 }

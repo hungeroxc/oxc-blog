@@ -32,7 +32,7 @@ const Login = ({ history }: RouteComponentProps) => {
     return (
         <div className={styles.loginContainer}>
             <div className={styles.loginForm}>
-                <Icon className={styles.loginIcon} id="React" />
+                <Icon color="#00b7f2" className={styles.loginIcon} id="React" />
                 <Input
                     size="large"
                     prefix={<IconAntd type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
