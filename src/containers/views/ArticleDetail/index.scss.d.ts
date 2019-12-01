@@ -7,11 +7,14 @@ interface CssExports {
   'detailContainer': string;
   'detailContent': string;
   'header': string;
+  'icon': string;
+  'item': string;
   'markdown': string;
   'otherInfo': string;
   'tagIcon': string;
   'tags': string;
   'title': string;
+  'viewCountAndDicuss': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

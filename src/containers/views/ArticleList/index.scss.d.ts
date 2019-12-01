@@ -9,6 +9,8 @@ interface CssExports {
   'createTime': string;
   'description': string;
   'empty': string;
+  'icon': string;
+  'item': string;
   'markdown': string;
   'otherInfo': string;
   'pagination': string;
@@ -18,6 +20,7 @@ interface CssExports {
   'tagContainer': string;
   'tagIcon': string;
   'title': string;
+  'viewCountAndDicuss': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

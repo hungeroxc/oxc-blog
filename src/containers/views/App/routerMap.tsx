@@ -39,24 +39,23 @@ export const homeMenu: RouterMenuItem = {
             path: '/',
             title: '首页',
             component: ArticleList,
-            icon: 'edit'
+            icon: 'home'
         },
         {
             path: '/about',
             title: '关于',
             component: AboutMe,
-            icon: 'edit'
+            icon: 'user'
         },
         {
             path: '/tag',
             title: '标签',
             component: Tags,
-            icon: 'edit'
+            icon: 'tags'
         },
         {
             path: '/tag/:tag',
-            component: TagWithArticle,
-            icon: 'edit'
+            component: TagWithArticle
         },
         {
             path: 'article-detail/:id',

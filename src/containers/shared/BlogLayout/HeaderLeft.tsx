@@ -1,11 +1,13 @@
 import React from 'react'
 
 import styles from './index.scss'
+import Icon from '@shared/Icon'
 
 const HeaderLeft = () => {
     return (
         <div className={styles.headLeft}>
-            <span>666</span>
+            <Icon className={styles.icon} width={20} height={20} id="bokezhuanjia" />
+            大春春的博客
         </div>
     )
 }

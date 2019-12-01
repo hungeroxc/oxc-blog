@@ -16,7 +16,7 @@
 
         .articleList {
             flex: 1;
-            padding-right: 20px;
+            padding: 0 20px;
             overflow: auto;
             margin-right: 260px;
         }
@@ -93,7 +93,28 @@
     }
 
     .otherInfo {
+        display: flex;
+        align-items: center;
         margin-top: 10px;
+
+        .viewCountAndDicuss {
+            display: flex;
+
+            .item {
+                display: flex;
+                margin-right: 5px;
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 3px;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
 
         .tagContainer {
             display: flex;

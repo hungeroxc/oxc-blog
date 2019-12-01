@@ -15,7 +15,7 @@
 
             .header {
                 text-align: center;
-                padding-bottom: 20px;
+                padding-bottom: 10px;
                 border-bottom: 1px solid #e8e8e8;
 
                 .title {
@@ -27,6 +27,7 @@
                 .otherInfo {
                     display: flex;
                     justify-content: center;
+                    align-items: center;
 
                     .tags {
                         display: flex;
@@ -35,6 +36,25 @@
                             display: flex;
                             align-items: center;
                             margin-right: 8px;
+                        }
+                    }
+
+                    .viewCountAndDicuss {
+                        display: flex;
+
+                        .item {
+                            display: flex;
+                            margin-right: 5px;
+
+                            .icon {
+                                display: flex;
+                                align-items: center;
+                                margin-right: 3px;
+                            }
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
                         }
                     }
                 }

@@ -15,6 +15,7 @@ interface CssExports {
   'headerSearch': string;
   'headerUserInfo': string;
   'hotArticle': string;
+  'icon': string;
   'link': string;
   'linkIcon': string;
   'linkItem': string;

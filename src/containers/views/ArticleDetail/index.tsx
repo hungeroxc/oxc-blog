@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import classnames from 'classnames'
+import { Divider } from 'antd'
 
 import { getArticleById } from '@services/api'
 import styles from './index.scss'
@@ -54,8 +55,31 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
                     <div className={styles.detailContent}>
                         <div className={styles.header}>
                             <h1 className={styles.title}>{data.title}</h1>
-                            {!!tempTagList.length && (
-                                <div className={styles.otherInfo}>
+                            <div className={styles.otherInfo}>
+                                <div className={styles.viewCountAndDicuss}>
+                                    <div className={styles.item}>
+                                        <Icon
+                                            className={styles.icon}
+                                            width={20}
+                                            height={20}
+                                            color="#828a8c"
+                                            id="yanjing"
+                                        />
+                                        {data.viewCount}
+                                    </div>
+                                    <div className={styles.item}>
+                                        <Icon
+                                            className={styles.icon}
+                                            width={20}
+                                            height={20}
+                                            color="#828a8c"
+                                            id="yanjing"
+                                        />
+                                        {data.viewCount}
+                                    </div>
+                                </div>
+                                <Divider type="vertical" />
+                                {!!tempTagList.length && (
                                     <div className={styles.tags}>
                                         <Icon
                                             className={styles.tagIcon}
@@ -66,8 +90,11 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
                                         />
                                         <ArticleTags tags={tempTagList} />
                                     </div>
-                                </div>
-                            )}
+                                )}
+
+                                <Divider type="vertical" />
+                                <div>更新于:&nbsp; {data.updatedAt}</div>
+                            </div>
                         </div>
                         <div
                             className={classnames(styles.content, styles.markdown)}

@@ -16,6 +16,8 @@ export interface ArticleItem {
     id: number
     tags: TagItem[]
     createdAt: string
+    updatedAt: string
+    viewCount: number
 }
 
 interface IProps {
@@ -44,6 +46,17 @@ const ArticleItem = ({ data, getTargetArticleId }: IProps) => {
                 onClick={() => getTargetArticleId(id)}
             />
             <div className={styles.otherInfo}>
+                <div className={styles.viewCountAndDicuss}>
+                    <div className={styles.item}>
+                        <Icon className={styles.icon} width={20} height={20} color="#828a8c" id="yanjing" />
+                        {data.viewCount}
+                    </div>
+                    <div className={styles.item}>
+                        <Icon className={styles.icon} width={20} height={20} color="#828a8c" id="yanjing" />
+                        {data.viewCount}
+                    </div>
+                </div>
+                <Divider type="vertical" />
                 {!!tags.length && (
                     <div className={styles.tagContainer}>
                         <Icon width={16} height={16} className={styles.tagIcon} color="#838a8c" id="tags" />
