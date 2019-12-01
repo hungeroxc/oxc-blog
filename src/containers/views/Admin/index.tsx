@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Layout } from 'antd'
 
 import styles from './index.scss'
 import SiderMenu from './SiderMenu'
 import { useStateValue } from '@store/user/index'
+import PageLoading from '@shared/PageLoading'
 
 const LayoutSider = Layout.Sider
 
@@ -29,7 +30,9 @@ const Admin = ({ children, history }: IProps & RouteComponentProps) => {
                 <SiderMenu />
             </LayoutSider>
             <Layout>
-                <LayoutContent>{children}</LayoutContent>
+                <LayoutContent>
+                    <Suspense fallback={<PageLoading />}>{children}</Suspense>
+                </LayoutContent>
             </Layout>
         </Layout>
     )
