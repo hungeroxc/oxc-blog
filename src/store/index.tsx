@@ -1,7 +1,10 @@
 import React from 'react'
 
-import { Provider as UserProvider } from './user/index'
-import { Provider as TagProvider } from './tag/index'
+import { Provider as UserProvider } from './user'
+import { Provider as TagProvider } from './tag'
+
+export { useUserStore } from './user'
+export { useTagStore } from './tag'
 
 // 使用数据reducer进行Provider整合，避免直接出现如下情况
 /**

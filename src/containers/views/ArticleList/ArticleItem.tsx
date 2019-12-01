@@ -6,15 +6,14 @@ import { markdownToHtml } from '@utils/index'
 import styles from './index.scss'
 import ArticleTags from '@shared/ArticleTags'
 import Icon from '@shared/Icon'
-import { useStateValue as useTagStateValue } from '@store/tag/index'
-import { TagItem } from '@store/tag/types'
+import { useTagStore } from '@store/index'
 import { getTagColor } from '@utils/index'
 
 export interface ArticleItem {
     content: string
     title: string
     id: number
-    tags: TagItem[]
+    tags: ITagStore.TagItem[]
     createdAt: string
     updatedAt: string
     viewCount: number
@@ -28,7 +27,9 @@ interface IProps {
 const ArticleItem = ({ data, getTargetArticleId }: IProps) => {
     const { title, content, id, tags } = data
 
-    const { tagList } = useTagStateValue()
+    const {
+        state: { tagList }
+    } = useTagStore()
 
     const tempTagList = getTagColor(tagList, tags)
 

@@ -11,8 +11,7 @@ import { ArticleItem } from './../ArticleList/ArticleItem'
 import ArticleAnchor from './ArticleAnchor'
 import Icon from '@shared/Icon'
 import ArticleTags from '@shared/ArticleTags'
-import { useStateValue as useTagState } from '@store/tag/index'
-import { TagItem } from '@store/tag/types'
+import { useTagStore } from '@store/index'
 import { getTagColor } from '@utils/index'
 
 const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
@@ -20,9 +19,11 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
     const [data, setData] = useState<ArticleItem>(null)
     const [content, setContent] = useState<string>('')
 
-    const [tempTagList, setTempTagList] = useState<TagItem[]>([])
+    const [tempTagList, setTempTagList] = useState<ITagStore.TagItem[]>([])
 
-    const { isGetTagList, tagList } = useTagState()
+    const {
+        state: { tagList, isGetTagList }
+    } = useTagStore()
 
     // 获取文章详情
     const getArticleDetail = async () => {

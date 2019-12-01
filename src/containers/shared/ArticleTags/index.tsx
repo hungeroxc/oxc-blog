@@ -2,11 +2,10 @@ import React from 'react'
 import { Tag } from 'antd'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-import { TagItem } from '@store/tag/types'
 import styles from './index.scss'
 
 interface IProps {
-    tags: TagItem[]
+    tags: ITagStore.TagItem[]
 }
 
 const ArticleTags = ({ tags, history }: IProps & RouteComponentProps) => {

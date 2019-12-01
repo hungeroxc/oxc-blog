@@ -1,6 +1,4 @@
-import { State, Action } from './types'
-
-const reducer = (state: State, action: Action) => {
+const reducer = (state: IUserStore.State, action: IUserStore.Action) => {
     switch (action.type) {
         case 'USER_LOGIN':
             return { ...state, userInfo: action.payload }

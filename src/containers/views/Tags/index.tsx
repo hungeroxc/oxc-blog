@@ -4,14 +4,15 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import PageLoading from '@shared/PageLoading'
 import styles from './index.scss'
-import { useStateValue as useTagsState } from '@store/tag/index'
-import { TagItem } from '@store/tag/types'
+import { useTagStore } from '@store/index'
 
 const Tags = ({ history }: RouteComponentProps) => {
-    const { tagList, isGetTagList } = useTagsState()
+    const {
+        state: { tagList, isGetTagList }
+    } = useTagStore()
 
     // 跳转到相对于该标签的文章列表页
-    const showTagWithArticle = (tag: TagItem) => {
+    const showTagWithArticle = (tag: ITagStore.TagItem) => {
         history.push(`/tag/${tag.value}`)
     }
 

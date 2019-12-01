@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 
 import styles from './index.scss'
 import SiderMenu from './SiderMenu'
-import { useStateValue } from '@store/user/index'
+import { useUserStore } from '@store/index'
 import PageLoading from '@shared/PageLoading'
 
 const LayoutSider = Layout.Sider
@@ -16,7 +16,9 @@ interface IProps {
 }
 
 const Admin = ({ children, history }: IProps & RouteComponentProps) => {
-    const { userInfo } = useStateValue()
+    const {
+        state: { userInfo }
+    } = useUserStore()
 
     useEffect(() => {
         if (!userInfo || userInfo.auth === 1) {

@@ -1,27 +1,18 @@
-import React, { createContext, ComponentType, useReducer, useContext } from 'react'
+import React, { createContext, ComponentType, useReducer, useContext, Dispatch } from 'react'
 
-import { State } from './types'
 import reducer from './reducer'
 
-export const initState: State = {
+export const initState: ITagStore.State = {
     tagList: [],
     isGetTagList: false
 }
 
-const StateCtx = createContext(initState)
-
-const DispatchCtx = createContext(null)
+const TagCtx = createContext<Context<ITagStore.State, Dispatch<ITagStore.Action>>>(null)
 
 export const Provider: ComponentType = props => {
     const [state, dispatch] = useReducer(reducer, initState)
 
-    return (
-        <DispatchCtx.Provider value={dispatch}>
-            <StateCtx.Provider value={state}>{props.children}</StateCtx.Provider>
-        </DispatchCtx.Provider>
-    )
+    return <TagCtx.Provider value={{ state, dispatch }}>{props.children}</TagCtx.Provider>
 }
 
-export const useDispatch = () => useContext(DispatchCtx)
-
-export const useStateValue = () => useContext(StateCtx)
+export const useTagStore = () => useContext(TagCtx)

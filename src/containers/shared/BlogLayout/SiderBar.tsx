@@ -6,12 +6,14 @@ import styles from './index.scss'
 import Icon from '@shared/Icon'
 import { ArticleItem } from '@views/ArticleList/ArticleItem'
 import { getArticleList } from '@services/api'
-import { useStateValue as useTagState } from '@store/tag'
+import { useTagStore } from '@store/index'
 
 const SiderBar = ({ history }: RouteComponentProps) => {
     const [articleList, setArticleList] = useState<ArticleItem[]>([])
 
-    const { tagList } = useTagState()
+    const {
+        state: { tagList }
+    } = useTagStore()
 
     const getList = async () => {
         const data = {

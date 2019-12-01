@@ -4,7 +4,7 @@ import { ModalProps } from 'antd/lib/modal'
 import { FormComponentProps } from 'antd/lib/form'
 
 import { register, login } from '@services/api'
-import { useDispatch } from '@store/user/index'
+import { useUserStore } from '@store/index'
 
 const api = { register, login }
 
@@ -19,7 +19,7 @@ interface IProps extends FormComponentProps, ModalProps {
 const AuthModal = ({ visible, form, authModalType, closeModal, triggerAuthModal }: IProps) => {
     const { getFieldDecorator, validateFields } = form
 
-    const dispatch = useDispatch()
+    const { dispatch: userDispatch } = useUserStore()
 
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -35,7 +35,7 @@ const AuthModal = ({ visible, form, authModalType, closeModal, triggerAuthModal 
                         setLoading(false)
                         triggerAuthModal(false)
                         if (authModalType === 'login') {
-                            dispatch({ type: 'USER_LOGIN', payload: res.data })
+                            userDispatch({ type: 'USER_LOGIN', payload: res.data })
                             localStorage.setItem('token', res.data.token)
                             message.success('登陆成功')
                         } else {

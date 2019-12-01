@@ -4,7 +4,7 @@ import { Input } from 'antd'
 import styles from './index.scss'
 import Editor from './Editor'
 import Tags from './Tags'
-import { useStateValue as useTagStateValue } from '@store/tag/index'
+import { useTagStore } from '@store/index'
 
 interface IProps {
     changeInputValue: (v: string) => void
@@ -18,7 +18,9 @@ interface IProps {
 const EditArticle = ({ changeInputValue, changeTitle, title, inputValue, selectedTags, setSelectedTags }: IProps) => {
     const [tempTagList, setTempTagList] = useState<string[]>([])
 
-    const { tagList } = useTagStateValue()
+    const {
+        state: { tagList }
+    } = useTagStore()
 
     // 从store中拿到所有tag
 

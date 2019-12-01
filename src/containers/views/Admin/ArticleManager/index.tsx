@@ -9,7 +9,7 @@ import { ArticleItem } from '@views/ArticleList/ArticleItem'
 import { getArticleList, deleteArticleById } from '@services/api'
 import UpdateArticle from './UpdateArticle'
 import { getTagColor } from '@utils/index'
-import { useStateValue as useTagsState } from '@store/tag'
+import { useTagStore } from '@store/index'
 
 const { Column } = Table
 
@@ -37,7 +37,9 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     const [isShowEdit, setIsShowEdit] = useState<boolean>(false)
     const [editTarget, setEditTarget] = useState<ArticleItem>(null)
 
-    const { tagList } = useTagsState()
+    const {
+        state: { tagList }
+    } = useTagStore()
 
     const getList = async () => {
         setLoading(true)

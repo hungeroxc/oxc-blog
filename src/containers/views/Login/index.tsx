@@ -5,13 +5,13 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import styles from './index.scss'
 import Icon from '@shared/Icon'
 import { login } from '@services/api'
-import { useDispatch } from '@store/user/index'
+import { useUserStore } from '@store/index'
 
 const Login = ({ history }: RouteComponentProps) => {
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
-    const dispatch = useDispatch()
+    const { dispatch } = useUserStore()
 
     const gotoAdmin = async () => {
         try {

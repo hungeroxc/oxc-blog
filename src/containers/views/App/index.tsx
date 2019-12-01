@@ -4,13 +4,12 @@ import jwtDecode from 'jwt-decode'
 import moment from 'moment'
 
 import menu from './routerMap'
-import { useDispatch as useUserDispatch } from '@store/user/index'
-import { useDispatch as useTagDispatch } from '@store/tag/index'
+import { useUserStore, useTagStore } from '@store/index'
 import PageLoading from '@shared/PageLoading'
 import { getTagList as getTagListApi } from '@services/api'
 
 const App = () => {
-    const userDispatch = useUserDispatch()
+    const { dispatch } = useUserStore()
 
     const initUserInfo = () => {
         const token = localStorage.getItem('token')
@@ -21,7 +20,7 @@ const App = () => {
             if (nowUnixTime > exp) {
                 localStorage.clear()
             } else {
-                userDispatch({ type: 'USER_LOGIN', payload: { id, username, auth } })
+                dispatch({ type: 'USER_LOGIN', payload: { id, username, auth } })
             }
         } else {
             localStorage.clear()
@@ -32,7 +31,7 @@ const App = () => {
         initUserInfo()
     }, [])
 
-    const tagDispatch = useTagDispatch()
+    const { dispatch: tagDispatch } = useTagStore()
 
     const getTagList = async () => {
         try {

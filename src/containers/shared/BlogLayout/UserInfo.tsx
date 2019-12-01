@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
 import AuthModal from './AuthModal'
-import { useStateValue, useDispatch } from '@store/user/index'
+import { useUserStore } from '@store/index'
 
 const MenuItem = Menu.Item
 
@@ -13,9 +13,10 @@ const UserInfo = ({ history }: RouteComponentProps) => {
     // 弹框类型
     const [authModalType, setAuthModalType] = useState<string>('login')
 
-    const { userInfo } = useStateValue()
-
-    const dispatch = useDispatch()
+    const {
+        state: { userInfo },
+        dispatch
+    } = useUserStore()
 
     const triggerAuthModal = (visible: boolean, type?: string) => {
         setAuthVisible(visible)
