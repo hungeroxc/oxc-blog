@@ -3,34 +3,33 @@ import { Pagination, Empty } from 'antd'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
-import { getArticleList } from '@services/api'
 import PageLoading from '@shared/PageLoading'
 import Article, { ArticleItem } from './ArticleItem'
 import ListPreview from './ListPreview'
 import { decodeQuery } from '@utils/index'
+import { useGetListData } from '@utils/hooks'
+import { getArticleList } from '@services/api'
 
 const pageSize = 10
 
 const ArticleList = ({ history, location }: RouteComponentProps) => {
-    const [loading, setLoading] = useState<boolean>(true)
-    const [articleList, setArticleList] = useState<ArticleItem[]>([])
+    const [params, setParams] = useState<FetchParams.GetArticleList>(null)
+    const [cancelRequire, setCancelRequire] = useState<boolean>(true)
 
-    // 总数相关
-    const [total, setTotal] = useState<number>(0)
+    const { list, loading, total } = useGetListData<ArticleItem, FetchParams.GetArticleList>(
+        getArticleList,
+        params,
+        cancelRequire
+    )
 
     const getList = async (page: number, keyword?: string) => {
-        setLoading(true)
         const data = {
             page,
             pageSize,
             keyword
         }
-        try {
-            const res = await getArticleList(data)
-            setArticleList(res.data.list instanceof Array ? res.data.list : [])
-            setTotal(res.data.total)
-            setLoading(false)
-        } catch (error) {}
+        setCancelRequire(false)
+        setParams(data)
     }
 
     // 跳转文章详情
@@ -38,7 +37,7 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
         history.push(`/article-detail/${id}`)
     }
 
-    // 改编页码
+    // 改变页码
     const changePage = (p: number) => {
         const urlParams = decodeQuery<{ page: number; keyword: string }>(location.search)
         const params = !!location.search ? { ...urlParams, page: p } : { page: p }
@@ -63,14 +62,14 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
                     <PageLoading />
                 ) : (
                     <>
-                        {!!articleList.length ? (
+                        {!!list.length ? (
                             <div className={styles.articleListContainer}>
                                 <div className={styles.articleList}>
-                                    {articleList.map(item => (
+                                    {list.map(item => (
                                         <Article getTargetArticleId={getTargetArticleId} key={item.id} data={item} />
                                     ))}
                                 </div>
-                                <ListPreview getTargetArticleId={getTargetArticleId} list={articleList} />
+                                <ListPreview getTargetArticleId={getTargetArticleId} list={list} />
                             </div>
                         ) : (
                             <Empty
@@ -81,7 +80,7 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
                     </>
                 )}
             </div>
-            {!!articleList.length && (
+            {!!list.length && (
                 <div className={styles.pagination}>
                     <Pagination
                         pageSize={pageSize}

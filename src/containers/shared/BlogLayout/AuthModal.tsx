@@ -46,7 +46,6 @@ const AuthModal = ({ visible, form, authModalType, closeModal, triggerAuthModal 
                     setLoading(false)
                 }
             } else {
-                console.log(err)
             }
         })
     }

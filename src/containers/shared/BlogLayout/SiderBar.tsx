@@ -1,36 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Icon as AntdIcon, Divider, Tag } from 'antd'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
 import Icon from '@shared/Icon'
 import { ArticleItem } from '@views/ArticleList/ArticleItem'
-import { getArticleList } from '@services/api'
 import { useTagStore } from '@store/index'
+import { useGetListData } from '@utils/hooks'
+import { getArticleList } from '@services/api'
+
+const params: FetchParams.GetArticleList = {
+    page: 1,
+    pageSize: 6,
+    sortName: 'viewCount',
+    sortType: 'DESC'
+}
 
 const SiderBar = ({ history }: RouteComponentProps) => {
-    const [articleList, setArticleList] = useState<ArticleItem[]>([])
+    const { list } = useGetListData<ArticleItem, FetchParams.GetArticleList>(getArticleList, params)
 
     const {
         state: { tagList }
     } = useTagStore()
-
-    const getList = async () => {
-        const data = {
-            page: 1,
-            pageSize: 6,
-            sortName: 'viewCount',
-            sortType: 'DESC'
-        }
-        try {
-            const res = await getArticleList(data)
-            setArticleList(res.data.list instanceof Array ? res.data.list : [])
-        } catch (error) {}
-    }
-
-    useEffect(() => {
-        getList()
-    }, [])
 
     return (
         <div className={styles.siderBar}>
@@ -63,7 +54,7 @@ const SiderBar = ({ history }: RouteComponentProps) => {
             </div>
             <Divider orientation="center">热门文章</Divider>
             <div className={styles.hotArticle}>
-                {articleList.map(item => (
+                {list.map(item => (
                     <div
                         onClick={() => history.push(`/article-detail/${item.id}`)}
                         className={styles.articleItem}

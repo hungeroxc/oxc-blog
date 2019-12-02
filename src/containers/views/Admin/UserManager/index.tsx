@@ -5,6 +5,7 @@ import { PaginationConfig, SorterResult } from 'antd/lib/table'
 
 import styles from './index.scss'
 import { getUserList, deleteUserById } from '@services/api'
+import { useGetListData } from '@utils/hooks'
 
 const { Column } = Table
 
@@ -19,11 +20,6 @@ interface UserItem {
 }
 
 const UserManager = () => {
-    const [loading, setLoading] = useState<boolean>(true)
-    const [list, setList] = useState<UserItem[]>([])
-    // 页码相关
-    const [total, setTotal] = useState<number>(0)
-    const [page, setPage] = useState<number>(1)
     // 筛选相关
     const [keyword, setKeyword] = useState<string>('')
     const [currentKeyword, setCurrentKeyword] = useState<string>('')
@@ -31,30 +27,24 @@ const UserManager = () => {
     const [sortName, setSortName] = useState<string>(null)
     const [sortType, setSortType] = useState<sortTypeType>(null)
 
+    const [params, setParams] = useState<FetchParams.GetUserList>(null)
+    const [cancelRequire, setCancelRequire] = useState<boolean>(true)
+
+    const { list, total, page, loading } = useGetListData(getUserList, params, cancelRequire)
+
     const getList = async () => {
-        const data = {
-            page,
+        const params = {
             pageSize,
             sortName,
             sortType,
             keyword: currentKeyword
         }
-        try {
-            const res = await getUserList(data)
-            if (res.data.list instanceof Array) {
-                if (res.data.list.length === 0 && res.data.total > 0) {
-                    setPage(page - 1)
-                    return
-                }
-                setList(res.data.list)
-                setTotal(res.data.total)
-                setLoading(false)
-            }
-        } catch (error) {}
+        setCancelRequire(false)
+        setParams(params)
     }
 
     const onSearch = () => {
-        setPage(1)
+        setParams({ ...params, page: 1 })
         setCurrentKeyword(keyword)
     }
 
@@ -85,7 +75,7 @@ const UserManager = () => {
     const changePageAndSorter = (pageStatus: PaginationConfig, sorterStatus: SorterResult<UserItem>) => {
         const { current } = pageStatus
         if (current !== page) {
-            setPage(current)
+            setParams({ ...params, page: current })
         }
         const { columnKey, order } = sorterStatus
         if (!!Object.keys(sorterStatus).length) {
@@ -99,7 +89,7 @@ const UserManager = () => {
 
     useEffect(() => {
         getList()
-    }, [page, sortName, sortType, currentKeyword])
+    }, [sortName, sortType, currentKeyword])
 
     const pagination = {
         total,

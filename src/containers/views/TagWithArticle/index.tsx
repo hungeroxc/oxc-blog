@@ -5,6 +5,7 @@ import { Timeline } from 'antd'
 import { getArticleList } from '@services/api'
 import PageLoading from '@shared/PageLoading'
 import styles from './index.scss'
+import { useGetListData } from '@utils/hooks'
 
 interface ListItem {
     createdAt: string
@@ -15,21 +16,16 @@ interface ListItem {
 const TimelineItem = Timeline.Item
 
 const TagWithArticle = ({ match, history }: RouteComponentProps<{ tag: string }>) => {
-    const { params } = match
+    const { tag } = match.params
 
-    const [list, setList] = useState<ListItem[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
+    const [params, setParams] = useState<FetchParams.GetArticleList>(null)
+    const [cancelRequire, setCancelRequire] = useState<boolean>(true)
 
-    const getList = async () => {
-        setLoading(true)
-        try {
-            const res = await getArticleList({
-                tag: params.tag
-            })
-            setList(res.data.list instanceof Array ? res.data.list : [])
-            setLoading(false)
-        } catch (error) {}
-    }
+    const { list, loading } = useGetListData<ListItem, FetchParams.GetArticleList>(
+        getArticleList,
+        params,
+        cancelRequire
+    )
 
     // 跳转详情
     const gotoArticleDetail = (id: number) => {
@@ -37,8 +33,9 @@ const TagWithArticle = ({ match, history }: RouteComponentProps<{ tag: string }>
     }
 
     useEffect(() => {
-        getList()
-    }, [params.tag])
+        setCancelRequire(false)
+        setParams({ tag })
+    }, [tag])
     return (
         <div className={styles.tagWithArticleWrapper}>
             {loading ? (

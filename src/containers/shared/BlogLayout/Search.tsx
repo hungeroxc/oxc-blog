@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Input, Icon, Row, Col } from 'antd'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
+import { decodeQuery } from '@utils/index'
 
-const Search = ({ history }: RouteComponentProps) => {
+const Search = ({ history, location }: RouteComponentProps) => {
     const [keyword, setKeyword] = useState<string>('')
 
     const searchArticle = () => {
-        console.log(keyword)
         history.push(`/?page=1&keyword=${keyword}`)
     }
+
+    useEffect(() => {
+        const { keyword } = decodeQuery<{ keyword: string }>(location.search)
+        setKeyword(keyword)
+    }, [location.search])
 
     return (
         <Row className={styles.searchBox}>

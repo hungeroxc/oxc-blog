@@ -6,10 +6,11 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
 import { ArticleItem } from '@views/ArticleList/ArticleItem'
-import { getArticleList, deleteArticleById } from '@services/api'
+import { deleteArticleById, getArticleList } from '@services/api'
 import UpdateArticle from './UpdateArticle'
 import { getTagColor } from '@utils/index'
 import { useTagStore } from '@store/index'
+import { useGetListData } from '@utils/hooks'
 
 const { Column } = Table
 
@@ -20,11 +21,6 @@ const pageSize = 10
 type sortTypeType = 'ASC' | 'DESC' | null
 
 const ArticleManager = ({ history }: RouteComponentProps) => {
-    const [list, setList] = useState<ArticleItem[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
-    // 页码相关
-    const [total, setTotal] = useState<number>(0)
-    const [page, setPage] = useState<number>(1)
     // 筛选相关
     const [keyword, setKeyword] = useState<string>('')
     const [currentKeyword, setCurrentKeyword] = useState<string>('')
@@ -37,40 +33,36 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
     const [isShowEdit, setIsShowEdit] = useState<boolean>(false)
     const [editTarget, setEditTarget] = useState<ArticleItem>(null)
 
+    const [params, setParams] = useState<FetchParams.GetArticleList>(null)
+    const [cancelRequire, setCancelRequire] = useState<boolean>(true)
+
+    const { list, loading, total, page } = useGetListData<ArticleItem, FetchParams.GetArticleList>(
+        getArticleList,
+        params,
+        cancelRequire
+    )
+
     const {
         state: { tagList }
     } = useTagStore()
 
     const getList = async () => {
-        setLoading(true)
-        const data = {
-            page,
+        const params = {
             pageSize,
             keyword: currentKeyword,
             sortName,
             sortType,
             tag: currentTagValue
         }
-        try {
-            const res = await getArticleList(data)
-            console.log(res.data)
-            if (res.data.list instanceof Array) {
-                if (res.data.list.length === 0 && res.data.total > 0) {
-                    setPage(page - 1)
-                    return
-                }
-                setList(res.data.list)
-                setTotal(res.data.total)
-                setLoading(false)
-            }
-        } catch (error) {}
+        setCancelRequire(false)
+        setParams(params)
     }
 
     // 换页和排序
     const changePageAndSorter = (pageStatus: PaginationConfig, sorterStatus: SorterResult<ArticleItem>) => {
         const { current } = pageStatus
         if (current !== page) {
-            setPage(current)
+            setParams({ ...params, page: current })
         }
         const { columnKey, order } = sorterStatus
         if (!!Object.keys(sorterStatus).length) {
@@ -103,7 +95,7 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
 
     // 触发搜索
     const onSearch = () => {
-        setPage(1)
+        setParams({ ...params, page: 1 })
         setCurrentKeyword(keyword)
         setCurrentTagValue(tagValue)
     }
@@ -163,7 +155,7 @@ const ArticleManager = ({ history }: RouteComponentProps) => {
 
     useEffect(() => {
         getList()
-    }, [page, currentKeyword, sortName, sortType, currentTagValue])
+    }, [currentKeyword, sortName, sortType, currentTagValue])
 
     const pagination = {
         total,
