@@ -5,6 +5,8 @@
 const fs = require('fs')
 const qiniu = require('qiniu')
 
+console.log(process.env, 123123123123123123)
+
 const accessKey = process.env.QINIUAK
 const secretKey = process.env.QINIUSK
 
