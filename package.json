@@ -78,6 +78,7 @@
         "highlight.js": "^9.16.2",
         "jwt-decode": "^2.2.0",
         "marked": "^0.7.0",
+        "qiniu": "^7.2.2",
         "qs": "^6.9.0",
         "react": "^16.11.0",
         "react-codemirror2": "^6.0.0",
