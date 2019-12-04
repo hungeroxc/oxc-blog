@@ -22,7 +22,6 @@ putExtra = null
 const uploadFile = localFile => {
     // 配置路径
     const key = localFile.replace(staticPath + '/', '')
-    console.log(key)
     const options = {
         scope: `${bucket}:${key}`
     }
@@ -37,6 +36,7 @@ const uploadFile = localFile => {
         } else {
             console.log(respInfo.statusCode)
             console.log(respBody)
+            process.exit()
         }
     })
 }
