@@ -36,7 +36,7 @@ const uploadFile = localFile => {
         } else {
             console.log(respInfo.statusCode)
             console.log(respBody)
-            process.exit()
+            throw new Error()
         }
     })
 }
