@@ -5,11 +5,8 @@
 const fs = require('fs')
 const qiniu = require('qiniu')
 
-// const accessKey = process.QINIUAK
-// const secretKey = process.QINIUSK
-
-const accessKey = 'ub6kVf__74nIJU7rJ9MBUxPTqoE1wSwLP4bXYBHE'
-const secretKey = 'C-Ua9VVgFsoQrNvrwCqz2gQEw9N22VjoKVcj-fIz'
+const accessKey = process.QINIUAK
+const secretKey = process.QINIUSK
 
 const mac = new qiniu.auth.digest.Mac(accessKey, secretKey)
 const staticPath = 'dist/prod/static'

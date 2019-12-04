@@ -7,7 +7,7 @@ const HeaderLeft = () => {
     return (
         <div className={styles.headLeft}>
             <Icon className={styles.icon} width={20} height={20} id="bokezhuanjia" />
-            大春春的博客
+            大春春的ss博客
         </div>
     )
 }
