@@ -19,6 +19,7 @@ const methods: Method[] = ['get', 'post', 'delete', 'put']
 const DEFAULTBASEURL = {
     baseURL: baseUrls[process.env.NODE_ENV].BASE_URL
 }
+
 methods.forEach(v => {
     http[v] = (url: string, data: any, baseUrl?: string) => {
         const config: AxiosRequestConfig = {

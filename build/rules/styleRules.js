@@ -5,7 +5,7 @@ const { cacheLoader, threadLoader } = require('./../loaders')
 const { IS_DEV, APP_ENV } = require('./../constants')
 
 // 当APP_ENV处于undefined状态时，说明处于本地编译不需要单独的css文件以节约时间
-// 当APP_ENV为qa或者prod事后，说明处于线上编译，此时需要css文件
+// 当APP_ENV为qa或者prod时候，说明处于线上编译，此时需要另外打包css文件
 const loader = IS_DEV && !APP_ENV ? 'style-loader' : MiniCssExtractPlugin.loader
 
 module.exports = [
