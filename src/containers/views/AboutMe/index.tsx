@@ -5,7 +5,7 @@ import styles from './index.scss'
 const AboutMe = () => {
     return (
         <div className={styles.aboutMe}>
-            <div>测试环境</div>
+            <div>关于我</div>
         </div>
     )
 }
