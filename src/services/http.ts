@@ -17,7 +17,7 @@ const http: HttpRequest = {}
 const methods: Method[] = ['get', 'post', 'delete', 'put']
 
 const DEFAULTBASEURL = {
-    baseURL: baseUrls[process.env.NODE_ENV].BASE_URL
+    baseURL: baseUrls[process.env.APP_ENV].BASE_URL
 }
 
 methods.forEach(v => {

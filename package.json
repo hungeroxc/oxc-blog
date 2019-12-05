@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js --mode development",
+        "dev": "cross-env APP_ENV=dev NODE_ENV=development webpack-dev-server --config build/webpack.config.js --mode development",
         "build:qa": "node build/clearFolder.js && cross-env NODE_ENV=development APP_ENV=qa webpack --config build/webpack.config.js",
         "build:prod": "node build/clearFolder.js && cross-env NODE_ENV=production APP_ENV=prod webpack --config build/webpack.config.js",
         "lint": "eslint src --ext .ts,.tsx && stylelint \"./src/**/*.scss\""

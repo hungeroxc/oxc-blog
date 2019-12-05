@@ -1,5 +1,4 @@
 const { resolve } = require('./utils')
-const { IS_DEV } = require('./constants.js')
 
 const cacheLoader = {
     loader: 'cache-loader',
