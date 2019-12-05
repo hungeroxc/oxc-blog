@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const { IS_DEV, ICONFONT_SRC_URL, HIGHLIGHT_SRC_URL } = require('./constants')
 
@@ -22,5 +22,5 @@ module.exports = [
         filename: IS_DEV ? 'css/[name].css' : 'css/[name].[contenthash].css',
         chunkFilename: IS_DEV ? 'css/[name].[id].css' : 'css/[name].[id].[contenthash].css'
     }),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
 ]
