@@ -7,8 +7,7 @@ import 'highlight.js/styles/atom-one-light.css'
 import Provider from '@store/index'
 import App from '@views/App'
 
-// icon
-import '@utils/iconfont.min'
+// icon样式
 import './styles/icon.scss'
 
 hljs.registerLanguage('javascript', javascript)

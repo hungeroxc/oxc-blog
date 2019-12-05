@@ -42,11 +42,8 @@ module.exports = {
     },
     optimization,
     // 测试环境使用.map文件，方便以后对sentry搭建进行测试
-    devtool: IS_DEV ? 'source-map' : undefined
-    // 也可以采用externals减少common包大小, 不过在本项目中未采用
-    // externals: {
-    //     react: 'React',
-    //     'react-dom': 'ReactDOM',
-    //     axios: 'axios'
-    // }
+    devtool: IS_DEV ? 'source-map' : undefined,
+    externals: {
+        'highlight.js': 'hljs'
+    }
 }
