@@ -12,10 +12,8 @@ const cacheLoader = {
 // https://webpack.docschina.org/guides/build-performance/#sass
 const threadLoader = workerParallelJobs => {
     const options = { workerParallelJobs }
-    // 该处只处于生产环境时候才设置poolTimeout为无限，否则生产环境打包完成后进程会被阻塞
-    if(IS_DEV) {
-        Object.assign(options, { poolTimeout: Infinity })
-    }
+    // poolTimeout最好不要设为无限大，否则worker一直存在，则打包完毕后进程一直不退出
+    Object.assign(options, { poolTimeout: 2000 })
 
     return { loader: 'thread-loader', options }
 }
