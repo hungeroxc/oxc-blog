@@ -3,7 +3,7 @@ const jsRules = require('./rules/jsRules')
 const stylesRules = require('./rules/styleRules')
 const fileRules = require('./rules/fileRules')
 const { resolve } = require('./utils')
-const { FILE_EXTENSIONS, IS_DEV, APP_ENV, QINIU_CDN_ADDRESS } = require('./constants')
+const { FILE_EXTENSIONS, IS_DEV, APP_ENV } = require('./constants')
 const optimization = require('./optimization')
 
 /**
