@@ -62,6 +62,17 @@ const uploadDir = dirPath => {
     })
 }
 
+// 生成404页面，该页面与首页一样，因为静态文件上传至cdn之后，跳转/xxx会试图寻找xxx.html文件
+// 而该文件不存在的时候跳到404，也就是跳回首页，用于模拟nginx中的try files效果
+const copyIndexHtmlTo404 = () => {
+    fs.writeFileSync(`${staticPath}/errno-404`, fs.readFileSync(`${staticPath}/index.html`))
+    fs.readdir(staticPath, (e, r) => {
+        console.log(r)
+    })
+}
+
+copyIndexHtmlTo404()
+
 fs.exists(staticPath, exists => {
     if (!exists) {
         console.log('目录不存在', staticPath)
