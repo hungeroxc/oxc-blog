@@ -7,10 +7,13 @@ const APP_ENV = process.env.APP_ENV
 const ICONFONT_SRC_URL = 'https://at.alicdn.com/t/font_587439_6381m1obx75.js'
 const HIGHLIGHT_SRC_URL = 'https://cdn.bootcss.com/highlight.js/9.15.6/highlight.min.js'
 
+const QINIU_CDN_ADDRESS = 'https://blog.oxcblog.club/'
+
 module.exports = {
     FILE_EXTENSIONS,
     IS_DEV,
     APP_ENV,
     ICONFONT_SRC_URL,
-    HIGHLIGHT_SRC_URL
+    HIGHLIGHT_SRC_URL,
+    QINIU_CDN_ADDRESS
 }

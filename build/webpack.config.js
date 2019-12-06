@@ -3,7 +3,7 @@ const jsRules = require('./rules/jsRules')
 const stylesRules = require('./rules/styleRules')
 const fileRules = require('./rules/fileRules')
 const { resolve } = require('./utils')
-const { FILE_EXTENSIONS, IS_DEV, APP_ENV } = require('./constants')
+const { FILE_EXTENSIONS, IS_DEV, APP_ENV, QINIU_CDN_ADDRESS } = require('./constants')
 const optimization = require('./optimization')
 
 /**
@@ -16,9 +16,9 @@ module.exports = {
     },
     output: {
         path: resolve(`dist/${APP_ENV}/static`),
-        filename: IS_DEV ? 'js/[name].js' : 'js/[name].[chunkhash].js',
-        chunkFilename: IS_DEV ? 'js/[name].js' : 'js/[name].[id].[chunkhash].js',
-        publicPath: '/'
+        filename: IS_DEV ? 'js/[name].js' : `js/[name].[chunkhash].js`,
+        chunkFilename: IS_DEV ? 'js/[name].js' : `js/[name].[id].[chunkhash].js`,
+        publicPath: IS_DEV ? '/' : QINIU_CDN_ADDRESS
     },
     devServer: {
         historyApiFallback: true
