@@ -9,6 +9,7 @@ const accessKey = process.env.QINIUAK
 const secretKey = process.env.QINIUSK
 
 const mac = new qiniu.auth.digest.Mac(accessKey, secretKey)
+
 const staticPath = 'dist/prod/static'
 const bucket = 'oxc-blog'
 
@@ -17,6 +18,8 @@ config.zone = qiniu.zone.Zone_z2
 const formUploader = new qiniu.form_up.FormUploader(config)
 let putExtra = new qiniu.form_up.PutExtra()
 putExtra = null
+
+const bucketManager = new qiniu.rs.BucketManager(mac, config)
 
 // 文件上传
 const uploadFile = localFile => {
@@ -66,12 +69,35 @@ const uploadDir = dirPath => {
 // 而该文件不存在的时候跳到404，也就是跳回首页，用于模拟nginx中的try files效果
 const copyIndexHtmlTo404 = () => {
     fs.writeFileSync(`${staticPath}/errno-404`, fs.readFileSync(`${staticPath}/index.html`))
-    fs.readdir(staticPath, (e, r) => {
-        console.log(r)
-    })
 }
 
 copyIndexHtmlTo404()
+
+const test = () => {
+    const deleteOperations = []
+    bucketManager.listPrefix(bucket, { prefix: '' }, (err, resBody) => {
+        if (err) {
+            throw new Error(err.error)
+        } else {
+            if (!!resBody.items && !!resBody.items.length) {
+                resBody.items.forEach(item => {
+                    deleteOperations.push(qiniu.rs.deleteOp(bucket, item.key))
+                })
+                bucketManager.batch(deleteOperations, dErr => {
+                    if (dErr) {
+                        throw new Error(dErr.error)
+                    } else {
+                        console.log('删除七牛文件成功')
+                    }
+                })
+            } else {
+                return
+            }
+        }
+    })
+}
+
+test()
 
 fs.exists(staticPath, exists => {
     if (!exists) {
