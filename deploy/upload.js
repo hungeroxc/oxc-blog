@@ -19,8 +19,6 @@ const formUploader = new qiniu.form_up.FormUploader(config)
 let putExtra = new qiniu.form_up.PutExtra()
 putExtra = null
 
-const bucketManager = new qiniu.rs.BucketManager(mac, config)
-
 // 文件上传
 const uploadFile = localFile => {
     // 配置路径
@@ -84,29 +82,33 @@ const copyIndexHtmlTo404 = () => {
     upload()
 }
 
-const clearFiles = () => {
-    const deleteOperations = []
-    bucketManager.listPrefix(bucket, { prefix: '' }, (err, resBody) => {
-        if (err) {
-            throw new Error(err.error)
-        } else {
-            if (!!resBody.items && !!resBody.items.length) {
-                resBody.items.forEach(item => {
-                    deleteOperations.push(qiniu.rs.deleteOp(bucket, item.key))
-                })
-                bucketManager.batch(deleteOperations, dErr => {
-                    if (dErr) {
-                        throw new Error(dErr.error)
-                    } else {
-                        console.log('删除七牛文件成功')
-                        copyIndexHtmlTo404()
-                    }
-                })
-            } else {
-                return
-            }
-        }
-    })
-}
+copyIndexHtmlTo404()
 
-clearFiles()
+// const bucketManager = new qiniu.rs.BucketManager(mac, config)
+
+// const clearFiles = () => {
+//     const deleteOperations = []
+//     bucketManager.listPrefix(bucket, { prefix: '' }, (err, resBody) => {
+//         if (err) {
+//             throw new Error(err.error)
+//         } else {
+//             if (!!resBody.items && !!resBody.items.length) {
+//                 resBody.items.forEach(item => {
+//                     deleteOperations.push(qiniu.rs.deleteOp(bucket, item.key))
+//                 })
+//                 bucketManager.batch(deleteOperations, dErr => {
+//                     if (dErr) {
+//                         throw new Error(dErr.error)
+//                     } else {
+//                         console.log('删除七牛文件成功')
+//                         copyIndexHtmlTo404()
+//                     }
+//                 })
+//             } else {
+//                 return
+//             }
+//         }
+//     })
+// }
+
+// clearFiles()
