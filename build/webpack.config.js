@@ -18,7 +18,7 @@ module.exports = {
         path: resolve(`dist/${APP_ENV}/static`),
         filename: IS_DEV ? 'js/[name].js' : `js/[name].[chunkhash].js`,
         chunkFilename: IS_DEV ? 'js/[name].js' : `js/[name].[id].[chunkhash].js`,
-        publicPath: IS_DEV ? '/' : QINIU_CDN_ADDRESS
+        publicPath: '/'
     },
     devServer: {
         historyApiFallback: true
