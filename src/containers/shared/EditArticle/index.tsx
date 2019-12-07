@@ -26,7 +26,7 @@ const EditArticle = ({ changeInputValue, changeTitle, title, inputValue, selecte
 
     useEffect(() => {
         setTempTagList(tagList.map(tag => tag.value))
-    }, [])
+    }, [tagList])
 
     return (
         <div className={styles.editArticle}>
