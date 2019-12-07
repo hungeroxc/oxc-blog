@@ -2,7 +2,7 @@
 
 export const baseUrls = {
     dev: {
-        BASE_URL: 'http://127.0.0.1:3000/api'
+        BASE_URL: 'http://127.0.0.1:3001/api'
     },
     qa: {
         BASE_URL: 'http://oxcblog.club:3001/api'
@@ -11,3 +11,5 @@ export const baseUrls = {
         BASE_URL: 'https://oxcblog.club/api'
     }
 }
+
+export const QN_URL_PREFIX = 'https://images.oxcblog.club/'

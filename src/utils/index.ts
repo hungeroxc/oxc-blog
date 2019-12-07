@@ -1,5 +1,10 @@
 import marked from 'marked'
 import hljs from 'highlight.js'
+import * as qiniu from 'qiniu-js'
+import { message } from 'antd'
+
+import { getQiniuToken } from '@services/api'
+import { QN_URL_PREFIX } from '@constants/index'
 
 export const markdownToHtml = (text: string) => {
     return marked(text, {
@@ -37,4 +42,34 @@ export const getTagColor = (tagList: ITagStore.TagItem[], tags: { id: number; va
         })
     })
     return list
+}
+
+// 七牛上传
+export const qiniuUpload = async (file: File, callback: (url: string) => void) => {
+    const res = await getQiniuToken()
+    const data = { token: res.data.token, key: '' }
+    const { name } = file
+    // 文件名处理，避免同名加个时间戳
+    if (!!name) {
+        let newName = name
+        if (name.includes('.')) {
+            const id = `_${new Date().getTime()}`
+            const index = name.lastIndexOf('.')
+            newName = name.slice(0, index) + id + name.slice(index, name.length)
+        }
+        data.key = newName
+    }
+
+    const uploadSuccess = (res: QiniuRes) => {
+        if (!!res && res.key) {
+            callback(QN_URL_PREFIX + res.key)
+        }
+    }
+
+    const uploadFail = () => {
+        message.error('上传失败, 请再试一次')
+    }
+
+    const observable = qiniu.upload(file, data.key, data.token, { fname: data.key }, { region: qiniu.region.z2 })
+    observable.subscribe(() => {}, uploadFail, uploadSuccess)
 }

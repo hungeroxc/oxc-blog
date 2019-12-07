@@ -46,3 +46,8 @@ export const updateArticle = (data = {}) => {
 export const getTagList = (data = {}) => {
     return http.get('tag/list', data)
 }
+
+// 获取七牛上传ak和sk
+export const getQiniuToken = (data = {}) => {
+    return http.get('qiniu/token', data)
+}
