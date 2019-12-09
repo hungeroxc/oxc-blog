@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Dropdown, Menu, Icon, Comment, Input, Button, message, Avatar } from 'antd'
 
 import styles from './index.scss'
@@ -83,6 +83,14 @@ const Discuess = ({ articleData }: IProps) => {
         )
     }
 
+    const discussCount = useMemo(() => {
+        let count = tempCommentList.length
+        tempCommentList.forEach(item => {
+            count = count + item.replies.length
+        })
+        return count
+    }, [tempCommentList])
+
     useEffect(() => {
         setTempCommentList(articleData.comments)
     }, [articleData.comments])
@@ -91,7 +99,7 @@ const Discuess = ({ articleData }: IProps) => {
         <div className={styles.discussContainer}>
             <div className={styles.header}>
                 <div className={styles.countInfo}>
-                    <span className={styles.count}>0</span>条评论
+                    <span className={styles.count}>{discussCount}</span>条评论
                 </div>
                 <div className={styles.user}>
                     <Dropdown trigger={['click']} placement="bottomCenter" overlay={renderMenu()}>
