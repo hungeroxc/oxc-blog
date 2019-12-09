@@ -70,16 +70,6 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
                                             />
                                             {data.viewCount}
                                         </div>
-                                        <div className={styles.item}>
-                                            <Icon
-                                                className={styles.icon}
-                                                width={20}
-                                                height={20}
-                                                color="#828a8c"
-                                                id="yanjing"
-                                            />
-                                            {data.viewCount}
-                                        </div>
                                     </div>
                                     <Divider type="vertical" />
                                     {!!tempTagList.length && (
