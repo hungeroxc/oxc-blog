@@ -1,0 +1,75 @@
+.discussContainer {
+    margin-top: 20px;
+    margin-right: 260px;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+
+        .countInfo {
+            .count {
+                color: #6190e8;
+                border-bottom: 1px dotted #6190e8;
+                margin-right: 5px;
+            }
+        }
+
+        .user {
+            cursor: pointer;
+
+            .userSelectIcon {
+                font-size: 14px !important;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .commentWrapper {
+        .defaultAvatar {
+            font-size: 40px !important;
+            margin: 5px 0;
+        }
+
+        .addCommentBtn {
+            text-align: right;
+        }
+
+        .headerAvatar {
+            background-color: #1890ff;
+        }
+
+        :global {
+            .ant-comment-avatar {
+                cursor: default;
+            }
+        }
+    }
+
+    .commentListContainer {
+        .commentUserInfo {
+            position: relative;
+            top: -8px;
+
+            .commentAvatar {
+                height: 32px;
+                width: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: default;
+            }
+        }
+
+        .commentContent {
+            margin-top: 10px;
+        }
+
+        .replyTextArea {
+            .replyBtn {
+                text-align: right;
+                margin-top: 15px;
+            }
+        }
+    }
+}

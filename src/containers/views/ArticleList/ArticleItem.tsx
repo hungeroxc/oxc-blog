@@ -9,6 +9,23 @@ import Icon from '@shared/Icon'
 import { useTagStore } from '@store/index'
 import { getTagColor } from '@utils/index'
 
+export interface ReplyItem extends CommentItem {}
+
+interface User {
+    id: number
+    username: string
+}
+
+export interface CommentItem {
+    content: string
+    createdAt: string
+    id: number
+    user?: User
+    replies: ReplyItem[]
+    replyUser?: User
+    targetUsername?: string
+}
+
 export interface ArticleItem {
     content: string
     title: string
@@ -17,6 +34,7 @@ export interface ArticleItem {
     createdAt: string
     updatedAt: string
     viewCount: number
+    comments: CommentItem[]
 }
 
 interface IProps {

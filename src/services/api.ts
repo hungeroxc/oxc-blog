@@ -47,6 +47,16 @@ export const getTagList = (data = {}) => {
     return http.get('tag/list', data)
 }
 
+// 对文章发表评论
+export const publishComment = (data = {}) => {
+    return http.post('discuss/publish', data)
+}
+
+// 回复评论或者回复给回复
+export const replyComment = (data = {}) => {
+    return http.post('discuss/reply', data)
+}
+
 // 获取七牛上传ak和sk
 export const getQiniuToken = (data = {}) => {
     return http.get('qiniu/token', data)

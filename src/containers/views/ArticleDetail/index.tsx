@@ -11,6 +11,7 @@ import { ArticleItem } from './../ArticleList/ArticleItem'
 import ArticleAnchor from './ArticleAnchor'
 import Icon from '@shared/Icon'
 import ArticleTags from '@shared/ArticleTags'
+import Discuss from '@shared/Discuss'
 import { useTagStore } from '@store/index'
 import { getTagColor } from '@utils/index'
 
@@ -52,60 +53,63 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
             {loading || !isGetTagList ? (
                 <PageLoading />
             ) : (
-                <div className={styles.detailContainer}>
-                    <div className={styles.detailContent}>
-                        <div className={styles.header}>
-                            <h1 className={styles.title}>{data.title}</h1>
-                            <div className={styles.otherInfo}>
-                                <div className={styles.viewCountAndDicuss}>
-                                    <div className={styles.item}>
-                                        <Icon
-                                            className={styles.icon}
-                                            width={20}
-                                            height={20}
-                                            color="#828a8c"
-                                            id="yanjing"
-                                        />
-                                        {data.viewCount}
+                <>
+                    <div className={styles.detailContainer}>
+                        <div className={styles.detailContent}>
+                            <div className={styles.header}>
+                                <h1 className={styles.title}>{data.title}</h1>
+                                <div className={styles.otherInfo}>
+                                    <div className={styles.viewCountAndDicuss}>
+                                        <div className={styles.item}>
+                                            <Icon
+                                                className={styles.icon}
+                                                width={20}
+                                                height={20}
+                                                color="#828a8c"
+                                                id="yanjing"
+                                            />
+                                            {data.viewCount}
+                                        </div>
+                                        <div className={styles.item}>
+                                            <Icon
+                                                className={styles.icon}
+                                                width={20}
+                                                height={20}
+                                                color="#828a8c"
+                                                id="yanjing"
+                                            />
+                                            {data.viewCount}
+                                        </div>
                                     </div>
-                                    <div className={styles.item}>
-                                        <Icon
-                                            className={styles.icon}
-                                            width={20}
-                                            height={20}
-                                            color="#828a8c"
-                                            id="yanjing"
-                                        />
-                                        {data.viewCount}
-                                    </div>
-                                </div>
-                                <Divider type="vertical" />
-                                {!!tempTagList.length && (
-                                    <div className={styles.tags}>
-                                        <Icon
-                                            className={styles.tagIcon}
-                                            id="tags"
-                                            width={16}
-                                            height={16}
-                                            color="#838a8c"
-                                        />
-                                        <ArticleTags tags={tempTagList} />
-                                    </div>
-                                )}
+                                    <Divider type="vertical" />
+                                    {!!tempTagList.length && (
+                                        <div className={styles.tags}>
+                                            <Icon
+                                                className={styles.tagIcon}
+                                                id="tags"
+                                                width={16}
+                                                height={16}
+                                                color="#838a8c"
+                                            />
+                                            <ArticleTags tags={tempTagList} />
+                                        </div>
+                                    )}
 
-                                <Divider type="vertical" />
-                                <div>更新于:&nbsp; {data.updatedAt}</div>
+                                    <Divider type="vertical" />
+                                    <div>更新于:&nbsp; {data.updatedAt}</div>
+                                </div>
                             </div>
+                            <div
+                                className={classnames(styles.content, styles.markdown)}
+                                dangerouslySetInnerHTML={{ __html: content }}
+                            />
                         </div>
-                        <div
-                            className={classnames(styles.content, styles.markdown)}
-                            dangerouslySetInnerHTML={{ __html: content }}
-                        />
+                        <div className={styles.articleAnchor}>
+                            <ArticleAnchor content={content} />
+                        </div>
                     </div>
-                    <div className={styles.articleAnchor}>
-                        <ArticleAnchor content={content} />
-                    </div>
-                </div>
+                    <Discuss articleData={data} />
+                </>
             )}
         </div>
     )
