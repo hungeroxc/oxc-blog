@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Divider } from 'antd'
 import classnames from 'classnames'
 
@@ -43,13 +43,21 @@ interface IProps {
 }
 
 const ArticleItem = ({ data, getTargetArticleId }: IProps) => {
-    const { title, content, id, tags } = data
+    const { title, content, id, tags, comments } = data
 
     const {
         state: { tagList }
     } = useTagStore()
 
     const tempTagList = getTagColor(tagList, tags)
+
+    const discussCount = useMemo(() => {
+        let count = comments.length
+        comments.forEach(item => {
+            count = count + item.replies.length
+        })
+        return count
+    }, [comments])
 
     return (
         <div className={styles.articleItem}>
@@ -67,8 +75,8 @@ const ArticleItem = ({ data, getTargetArticleId }: IProps) => {
             <div className={styles.otherInfo}>
                 <div className={styles.viewCountAndDicuss}>
                     <div className={styles.item}>
-                        <Icon className={styles.icon} width={20} height={20} color="#828a8c" id="yanjing" />
-                        {data.viewCount}
+                        <Icon className={styles.icon} width={16} height={16} color="#828a8c" id="discuss2e" />
+                        {discussCount}
                     </div>
                     <div className={styles.item}>
                         <Icon className={styles.icon} width={20} height={20} color="#828a8c" id="yanjing" />
