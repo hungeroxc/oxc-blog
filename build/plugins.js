@@ -13,6 +13,7 @@ module.exports = [
     new HtmlWebpackPlugin({
         template: 'build/tpl/index.html',
         inject: true,
+        favicon: 'build/tpl/favicon.ico',
         templateParameters: { iconfontSrcUrl: ICONFONT_SRC_URL, hightlightSrcUrl: HIGHLIGHT_SRC_URL }
     }),
     new ForkTsCheckerWebpackPlugin(),
