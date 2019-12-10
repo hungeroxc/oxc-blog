@@ -13,6 +13,9 @@ interface CssExports {
   'discussContainer': string;
   'header': string;
   'headerAvatar': string;
+  'markdown': string;
+  'note': string;
+  'operationContainer': string;
   'replyBtn': string;
   'replyTextArea': string;
   'user': string;

@@ -1,3 +1,5 @@
+@import 'markdown';
+
 .discussContainer {
     margin-top: 20px;
     margin-right: 260px;
@@ -32,7 +34,18 @@
         }
 
         .addCommentBtn {
-            text-align: right;
+            display: flex;
+            justify-content: space-between;
+
+            .operationContainer {
+                display: flex;
+                align-items: center;
+
+                .note {
+                    margin-right: 10px;
+                    color: #6190e8;
+                }
+            }
         }
 
         .headerAvatar {

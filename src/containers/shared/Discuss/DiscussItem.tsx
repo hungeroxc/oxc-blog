@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Comment, Avatar, Tooltip, Input, Button, message } from 'antd'
 import moment from 'moment'
+import classnames from 'classnames'
 
 import { CommentItem, ReplyItem } from '@views/ArticleList/ArticleItem'
 import styles from './index.scss'
 import { replyComment } from '@services/api'
+import { markdownToHtml } from '@utils/index'
 
 const { TextArea } = Input
 
@@ -52,6 +54,12 @@ const DiscussItem: React.FC<IProps> = ({
 
     // 回复该用户的评论
     const replyTheComment = async () => {
+        if (!value || value.length > 500) {
+            return message.error('回复的字数不能超过500也不能为空')
+        }
+        if (!userInfo) {
+            return message.error('请先登录')
+        }
         const params = {
             content: value,
             userId: userInfo.id,
@@ -87,7 +95,12 @@ const DiscussItem: React.FC<IProps> = ({
                 </span>
             ]}
             author={<span>{isReply ? `${currentUser.username} 回复给 ${targetUsername}` : currentUser.username}</span>}
-            content={<div className={styles.commentContent}>{content}</div>}
+            content={
+                <div
+                    className={classnames(styles.commentContent, styles.markdown)}
+                    dangerouslySetInnerHTML={{ __html: markdownToHtml(content) }}
+                />
+            }
             datetime={
                 <Tooltip title={createdAt}>
                     <span>{moment(createdAt).fromNow()}</span>

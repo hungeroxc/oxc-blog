@@ -41,8 +41,8 @@ const Discuess = ({ articleData }: IProps) => {
     }
 
     const pushComment = async () => {
-        if (!commentContent) {
-            return
+        if (!commentContent || commentContent.length > 500) {
+            return message.error('评论字数不能超过500也不能为空')
         }
         if (!userInfo) {
             return message.error('请先登录')
@@ -131,9 +131,13 @@ const Discuess = ({ articleData }: IProps) => {
                     }
                 />
                 <div className={styles.addCommentBtn}>
-                    <Button onClick={pushComment} type="primary">
-                        提交
-                    </Button>
+                    <div />
+                    <div className={styles.operationContainer}>
+                        <div className={styles.note}>支持Markdown语法</div>
+                        <Button onClick={pushComment} type="primary">
+                            提交
+                        </Button>
+                    </div>
                 </div>
             </div>
             <DiscussList setDiscussReply={setDiscussReply} userInfo={userInfo} commentList={tempCommentList} />
