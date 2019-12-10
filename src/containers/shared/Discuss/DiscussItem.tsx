@@ -98,7 +98,7 @@ const DiscussItem: React.FC<IProps> = ({
             content={
                 <div
                     className={classnames(styles.commentContent, styles.markdown)}
-                    dangerouslySetInnerHTML={{ __html: markdownToHtml(content) }}
+                    dangerouslySetInnerHTML={{ __html: markdownToHtml(content, true) }}
                 />
             }
             datetime={

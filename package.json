@@ -86,6 +86,7 @@
         "react-codemirror2": "^6.0.0",
         "react-dom": "^16.11.0",
         "react-router-dom": "^5.1.2",
-        "react-virtualized": "^9.21.2"
+        "react-virtualized": "^9.21.2",
+        "xss": "^1.0.6"
     }
 }

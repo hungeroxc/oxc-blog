@@ -1,21 +1,22 @@
 import marked from 'marked'
 import hljs from 'highlight.js'
+import { filterXSS } from 'xss'
 import * as qiniu from 'qiniu-js'
 import { message } from 'antd'
 
 import { getQiniuToken } from '@services/api'
 import { QN_URL_PREFIX } from '@constants/index'
 
-export const markdownToHtml = (text: string) => {
-    return marked(text, {
+export const markdownToHtml = (text: string, isGuardXss = false) => {
+    return marked(isGuardXss ? filterXSS(text) : text, {
         renderer: new marked.Renderer(),
         gfm: true,
-        tables: true,
-        breaks: true,
         pedantic: false,
         sanitize: false,
+        tables: true,
+        breaks: true,
         smartLists: true,
-        smartypants: false,
+        smartypants: true,
         highlight: (code: string) => {
             return hljs.highlightAuto(code).value
         }
