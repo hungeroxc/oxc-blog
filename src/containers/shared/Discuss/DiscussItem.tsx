@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Comment, Avatar, Tooltip, Input, Button, message } from 'antd'
+import { Comment, Avatar, Tooltip, Input, Button, message, Icon, Popconfirm } from 'antd'
 import moment from 'moment'
 import classnames from 'classnames'
 
 import { CommentItem, ReplyItem } from '@views/ArticleList/ArticleItem'
 import styles from './index.scss'
-import { replyComment } from '@services/api'
+import { replyComment, deleteComment, deleteReply } from '@services/api'
 import { markdownToHtml } from '@utils/index'
 
 const { TextArea } = Input
@@ -76,6 +76,15 @@ const DiscussItem: React.FC<IProps> = ({
         } catch (error) {}
     }
 
+    // 删除评论
+    const deleteDiscuss = async () => {
+        const api = isReply ? deleteReply : deleteComment
+        try {
+            await api({ id: data.id })
+            message.success('删除成功')
+        } catch (error) {}
+    }
+
     const isShowReply = useMemo(() => {
         return replyTargetUserId === currentUser.id && replyTargetCommentId === data.id
     }, [replyTargetUserId, replyTargetCommentId])
@@ -92,7 +101,19 @@ const DiscussItem: React.FC<IProps> = ({
             actions={[
                 <span onClick={clickReply} key="reply">
                     回复
-                </span>
+                </span>,
+                <>
+                    {!!userInfo && userInfo.auth === 2 && (
+                        <Popconfirm
+                            onConfirm={deleteDiscuss}
+                            cancelText="取消"
+                            okText="确认"
+                            title={`是否删除该${isReply ? '回复' : '评论'}`}
+                        >
+                            <Icon style={{ cursor: 'pointer', color: 'red' }} type="delete" />
+                        </Popconfirm>
+                    )}
+                </>
             ]}
             author={<span>{isReply ? `${currentUser.username} 回复给 ${targetUsername}` : currentUser.username}</span>}
             content={

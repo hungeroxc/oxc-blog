@@ -52,9 +52,19 @@ export const publishComment = (data = {}) => {
     return http.post('discuss/publish', data)
 }
 
+// 删除评论
+export const deleteComment = (data = {}) => {
+    return http.delete('discuss/delete', data)
+}
+
 // 回复评论或者回复给回复
 export const replyComment = (data = {}) => {
     return http.post('discuss/reply', data)
+}
+
+// 删除回复
+export const deleteReply = (data = {}) => {
+    return http.delete('discuss/reply/delete', data)
 }
 
 // 获取七牛上传ak和sk
