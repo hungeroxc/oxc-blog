@@ -8,7 +8,7 @@
 ### 地址
 
 -   博客地址: [大春春](https://blog.oxcblog.club/)
--   测试地址: [测试地址](http://blog-test.oxcblog.club/)
+-   测试地址: [测试地址](http://blog-test.oxcblog.club/)(管理员权限账密 a / a)
 
 ### 技术栈
 

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { Controlled as ReactCodeMirror } from 'react-codemirror2'
+import { message } from 'antd'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/monokai.css'
 import 'codemirror/theme/neat.css'
@@ -34,6 +35,9 @@ const CodeMirror = ({ value, onChangeInput }: IProps) => {
         const clipboard = e.clipboardData
         if (!clipboard.items || !clipboard.items.length) {
             return
+        }
+        if (process.env.APP_ENV === 'qa') {
+            return message.error('测试环境暂不支持黏贴图片')
         }
         const data = clipboard.items[0]
         if (clipboard.items[0].type === 'image/png') {
