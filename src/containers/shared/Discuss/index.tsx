@@ -70,6 +70,19 @@ const Discuess = ({ articleData }: IProps) => {
         setTempCommentList(list)
     }
 
+    const setDeleteDiscussReply = (commentId: number, replyId?: number, isReply?: boolean) => {
+        const list = [...tempCommentList]
+        if (isReply) {
+            const targetComment = tempCommentList.find(item => item.id === commentId)
+            const targetReplyIndex = targetComment.replies.findIndex(item => item.id === replyId)
+            targetComment.replies.splice(targetReplyIndex, 1)
+        } else {
+            const targetCommentIndex = tempCommentList.findIndex(item => item.id === commentId)
+            list.splice(targetCommentIndex, 1)
+        }
+        setTempCommentList(list)
+    }
+
     const renderMenu = () => {
         return !!userInfo ? (
             <Menu>
@@ -140,7 +153,12 @@ const Discuess = ({ articleData }: IProps) => {
                     </div>
                 </div>
             </div>
-            <DiscussList setDiscussReply={setDiscussReply} userInfo={userInfo} commentList={tempCommentList} />
+            <DiscussList
+                setDeleteDiscussReply={setDeleteDiscussReply}
+                setDiscussReply={setDiscussReply}
+                userInfo={userInfo}
+                commentList={tempCommentList}
+            />
             <AuthModal
                 triggerAuthModal={triggerAuthModal}
                 authModalType={authModalType}

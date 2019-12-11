@@ -19,6 +19,7 @@ interface IProps {
     isReply?: boolean
     setDiscussReply: (commentId: number, replyItem: ReplyItem) => void
     commentId: number
+    setDeleteDiscussReply: (commentId: number, replyId?: number, isReply?: boolean) => void
 }
 
 const DiscussItem: React.FC<IProps> = ({
@@ -30,7 +31,8 @@ const DiscussItem: React.FC<IProps> = ({
     userInfo,
     isReply,
     setDiscussReply,
-    commentId
+    commentId,
+    setDeleteDiscussReply
 }) => {
     const { user, createdAt, content, replyUser, targetUsername } = data
 
@@ -82,6 +84,7 @@ const DiscussItem: React.FC<IProps> = ({
         try {
             await api({ id: data.id })
             message.success('删除成功')
+            setDeleteDiscussReply(commentId, isReply ? data.id : undefined, isReply)
         } catch (error) {}
     }
 

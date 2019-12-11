@@ -8,9 +8,10 @@ interface IProps {
     commentList: CommentItem[]
     userInfo: IUserStore.UserInfo
     setDiscussReply: (commentId: number, replyItem: ReplyItem) => void
+    setDeleteDiscussReply: (commentId: number, replyId?: number, isReply?: boolean) => void
 }
 
-const DiscussList = ({ commentList, userInfo, setDiscussReply }: IProps) => {
+const DiscussList = ({ commentList, userInfo, setDiscussReply, setDeleteDiscussReply }: IProps) => {
     // 回复目标用户的id
     const [replyTargetUserId, setReplyTargetUserId] = useState<number>(null)
     // 回复目标评论id
@@ -44,6 +45,7 @@ const DiscussList = ({ commentList, userInfo, setDiscussReply }: IProps) => {
                     userInfo={userInfo}
                     setDiscussReply={setDiscussReply}
                     commentId={item.id}
+                    setDeleteDiscussReply={setDeleteDiscussReply}
                 >
                     {item.replies.map(reply => (
                         <DiscussItem
@@ -56,6 +58,7 @@ const DiscussList = ({ commentList, userInfo, setDiscussReply }: IProps) => {
                             isReply
                             setDiscussReply={setDiscussReply}
                             commentId={item.id}
+                            setDeleteDiscussReply={setDeleteDiscussReply}
                         />
                     ))}
                 </DiscussItem>
