@@ -94,7 +94,7 @@ const AboutMe = () => {
                     其他：
                     <ul>
                         <li>常用系统: macOS，Ubuntu，windows</li>
-                        <li>常用工具: VSCode</li>
+                        <li>常用工具: VSCode，Chrome，Postman</li>
                     </ul>
                 </li>
                 <li>个人：喜爱代码，游戏，吹牛皮</li>
