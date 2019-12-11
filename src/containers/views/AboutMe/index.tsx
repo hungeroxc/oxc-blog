@@ -64,7 +64,7 @@ const AboutMe = () => {
                 <li>姓名：大春春</li>
                 <li>
                     联系方式：
-                    <AntdIcon type="qq" /> 434358603
+                    <AntdIcon type="qq" /> 524112857
                     <Divider type="vertical" />
                     <AntdIcon style={{ marginRight: 6 }} type="mail" />
                     <a href="mailto:524112857@qq.com">524112857@qq.com</a>
