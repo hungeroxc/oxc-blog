@@ -1,3 +1,38 @@
 .aboutMe {
-    padding: 0 20px;
+    padding: 20px;
+
+    .myInfo {
+        list-style: circle;
+
+        > li {
+            margin-top: 10px;
+
+            li {
+                margin-top: 5px;
+
+                .rate {
+                    margin-left: 15px;
+                }
+            }
+        }
+
+        .otherBlogAddress {
+            display: flex;
+
+            .linkIcon {
+                display: flex;
+                align-items: center;
+                margin-right: 6px;
+            }
+        }
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+
+        .desc {
+            margin-left: 10px;
+        }
+    }
 }

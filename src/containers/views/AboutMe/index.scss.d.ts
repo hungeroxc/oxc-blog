@@ -2,6 +2,12 @@
 // Please do not change this file!
 interface CssExports {
   'aboutMe': string;
+  'desc': string;
+  'header': string;
+  'linkIcon': string;
+  'myInfo': string;
+  'otherBlogAddress': string;
+  'rate': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

@@ -42,16 +42,16 @@ export const homeMenu: RouterMenuItem = {
             icon: 'home'
         },
         {
-            path: '/about',
-            title: '关于',
-            component: AboutMe,
-            icon: 'user'
-        },
-        {
             path: '/tag',
             title: '标签',
             component: Tags,
             icon: 'tags'
+        },
+        {
+            path: '/about',
+            title: '关于',
+            component: AboutMe,
+            icon: 'user'
         },
         {
             path: '/tag/:tag',
