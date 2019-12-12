@@ -13,7 +13,8 @@ const params: FetchParams.GetArticleList = {
     page: 1,
     pageSize: 6,
     sortName: 'viewCount',
-    sortType: 'DESC'
+    sortType: 'DESC',
+    justTitle: true
 }
 
 const SiderBar = ({ history }: RouteComponentProps) => {

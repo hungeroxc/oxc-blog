@@ -7,6 +7,7 @@ export interface GetList {
     keyword?: string
     sortName?: string
     sortType?: 'DESC' | 'ASC'
+    justTitle?: boolean
 }
 
 // 请求文章列表
