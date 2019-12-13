@@ -26,7 +26,8 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
         const data = {
             page,
             pageSize,
-            keyword
+            keyword,
+            isContentLimit: true
         }
         setCancelRequire(false)
         setParams(data)

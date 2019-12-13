@@ -16,6 +16,7 @@ const { Link } = Anchor
 
 const getAnchorList = (value: string) => {
     const reg = /<(h[1-6])[\s\S]+?(?=<\/\1>)/g
+    const reg2 = /<.+?>/g
     const list = []
     const pushItem = (arr: AnchorItem[], item: AnchorItem) => {
         const len = arr.length
@@ -27,7 +28,7 @@ const getAnchorList = (value: string) => {
         }
     }
     value.replace(reg, ($0: string, $1: string): any => {
-        const title = $0.replace(/.*?>/, '')
+        const title = $0.replace(/.*?>/, '').replace(reg2, '')
         const startIndex = $0.indexOf('"')
         const endIndex = $0.indexOf('">')
 
