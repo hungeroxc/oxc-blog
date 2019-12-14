@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Pagination, Empty, Icon, Drawer, Button } from 'antd'
+import { Pagination, Empty, Icon, Drawer } from 'antd'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
@@ -64,13 +64,6 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
 
     return (
         <div className={styles.article}>
-            <Button
-                onClick={() => {
-                    throw new Error('出错')
-                }}
-            >
-                测试fundebug
-            </Button>
             <div className={styles.articleListWrapper}>
                 {loading ? (
                     <PageLoading />
