@@ -10,6 +10,7 @@ interface AnchorItem {
 
 interface IProps {
     content: string
+    className?: string
 }
 
 const { Link } = Anchor
@@ -44,7 +45,7 @@ const getAnchorList = (value: string) => {
     return list
 }
 
-const ArticleAnchor = ({ content }: IProps) => {
+const ArticleAnchor = ({ content, className }: IProps) => {
     const list: AnchorItem[] = getAnchorList(content)
 
     const renderLink = (item: AnchorItem) => {
@@ -55,7 +56,11 @@ const ArticleAnchor = ({ content }: IProps) => {
         )
     }
 
-    return <Anchor affix={false}>{list.map(renderLink)}</Anchor>
+    return (
+        <Anchor className={className} affix={false}>
+            {list.map(renderLink)}
+        </Anchor>
+    )
 }
 
 export default ArticleAnchor

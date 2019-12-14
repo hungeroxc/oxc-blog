@@ -10,6 +10,11 @@ interface CssExports {
   'icon': string;
   'item': string;
   'markdown': string;
+  'mobileAnchor': string;
+  'mobileDrawer': string;
+  'mobileDrawerBtn': string;
+  'mobileTagItem': string;
+  'mobileTags': string;
   'otherInfo': string;
   'tagIcon': string;
   'tags': string;

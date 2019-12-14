@@ -7,6 +7,7 @@ import styles from './index.scss'
 interface IProps {
     list: ArticleItem[]
     getTargetArticleId: (id: number) => void
+    className?: string
 }
 
 const ListPreview = ({ list, getTargetArticleId }: IProps) => {

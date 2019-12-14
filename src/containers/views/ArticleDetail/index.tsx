@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import classnames from 'classnames'
-import { Divider } from 'antd'
+import { Divider, Drawer, Icon as AntdIcon } from 'antd'
 
 import { getArticleById } from '@services/api'
 import styles from './index.scss'
@@ -13,7 +13,7 @@ import Icon from '@shared/Icon'
 import ArticleTags from '@shared/ArticleTags'
 import Discuss from '@shared/Discuss'
 import { useTagStore } from '@store/index'
-import { getTagColor } from '@utils/index'
+import { getTagColor, getWindowWidth } from '@utils/index'
 
 const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
     const [loading, setLoading] = useState<boolean>(true)
@@ -21,6 +21,11 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
     const [content, setContent] = useState<string>('')
 
     const [tempTagList, setTempTagList] = useState<ITagStore.TagItem[]>([])
+
+    // 移动端抽屉展示
+    const [isShowTitleListDrawer, setIsShowTitleListDrawer] = useState<boolean>(false)
+
+    const width = getWindowWidth()
 
     const {
         state: { tagList, isGetTagList }
@@ -58,6 +63,7 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
                         <div className={styles.detailContent}>
                             <div className={styles.header}>
                                 <h1 className={styles.title}>{data.title}</h1>
+                                {width <= 768 && <div style={{ marginBottom: 5 }}>更新于:&nbsp; {data.updatedAt}</div>}
                                 <div className={styles.otherInfo}>
                                     <div className={styles.viewCountAndDicuss}>
                                         <div className={styles.item}>
@@ -71,23 +77,34 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
                                             {data.viewCount}
                                         </div>
                                     </div>
-                                    <Divider type="vertical" />
-                                    {!!tempTagList.length && (
-                                        <div className={styles.tags}>
-                                            <Icon
-                                                className={styles.tagIcon}
-                                                id="tags"
-                                                width={16}
-                                                height={16}
-                                                color="#838a8c"
-                                            />
-                                            <ArticleTags tags={tempTagList} />
-                                        </div>
-                                    )}
 
-                                    <Divider type="vertical" />
-                                    <div>更新于:&nbsp; {data.updatedAt}</div>
+                                    {width > 768 && (
+                                        <>
+                                            <Divider type="vertical" />
+                                            {!!tempTagList.length && (
+                                                <div className={styles.tags}>
+                                                    <Icon
+                                                        className={styles.tagIcon}
+                                                        id="tags"
+                                                        width={16}
+                                                        height={16}
+                                                        color="#838a8c"
+                                                    />
+                                                    <ArticleTags tags={tempTagList} />
+                                                </div>
+                                            )}
+                                            <Divider type="vertical" />
+                                            <div>更新于:&nbsp; {data.updatedAt}</div>
+                                        </>
+                                    )}
                                 </div>
+                                {width <= 768 && (
+                                    <div className={styles.mobileTags}>
+                                        {!!tempTagList.length && (
+                                            <ArticleTags className={styles.mobileTagItem} tags={tempTagList} />
+                                        )}
+                                    </div>
+                                )}
                             </div>
                             <div
                                 className={classnames(styles.content, styles.markdown)}
@@ -99,6 +116,22 @@ const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
                         </div>
                     </div>
                     <Discuss articleData={data} />
+                </>
+            )}
+            {width <= 576 && (
+                <>
+                    <div onClick={() => setIsShowTitleListDrawer(true)} className={styles.mobileDrawerBtn}>
+                        <AntdIcon type="menu-o" />
+                    </div>
+                    <Drawer
+                        className={styles.mobileDrawer}
+                        closable={false}
+                        title="标题列表"
+                        onClose={() => setIsShowTitleListDrawer(false)}
+                        visible={isShowTitleListDrawer}
+                    >
+                        <ArticleAnchor className={styles.mobileAnchor} content={content} />
+                    </Drawer>
                 </>
             )}
         </div>

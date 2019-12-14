@@ -12,6 +12,11 @@ interface CssExports {
   'icon': string;
   'item': string;
   'markdown': string;
+  'mobildTags': string;
+  'mobileArticleTitle': string;
+  'mobileDrawer': string;
+  'mobileDrawerBtn': string;
+  'mobileTitleWrapper': string;
   'otherInfo': string;
   'pagination': string;
   'preView': string;

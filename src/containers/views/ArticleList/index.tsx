@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Pagination, Empty } from 'antd'
+import { Pagination, Empty, Icon, Drawer } from 'antd'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import styles from './index.scss'
 import PageLoading from '@shared/PageLoading'
 import Article, { ArticleItem } from './ArticleItem'
 import ListPreview from './ListPreview'
-import { decodeQuery } from '@utils/index'
+import { decodeQuery, getWindowWidth } from '@utils/index'
 import { useGetListData } from '@utils/hooks'
 import { getArticleList } from '@services/api'
 
@@ -15,6 +15,11 @@ const pageSize = 10
 const ArticleList = ({ history, location }: RouteComponentProps) => {
     const [params, setParams] = useState<FetchParams.GetArticleList>(null)
     const [cancelRequire, setCancelRequire] = useState<boolean>(true)
+
+    // 移动端抽屉展示
+    const [isShowTitleListDrawer, setIsShowTitleListDrawer] = useState<boolean>(false)
+
+    const windowWidth = getWindowWidth()
 
     const { list, loading, total } = useGetListData<ArticleItem, FetchParams.GetArticleList>(
         getArticleList,
@@ -36,6 +41,7 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
     // 跳转文章详情
     const getTargetArticleId = (id: number) => {
         history.push(`/article-detail/${id}`)
+        setIsShowTitleListDrawer(false)
     }
 
     // 改变页码
@@ -90,6 +96,30 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
                         current={!!page ? Number(page) : 1}
                     />
                 </div>
+            )}
+            {windowWidth <= 576 && (
+                <>
+                    <div onClick={() => setIsShowTitleListDrawer(true)} className={styles.mobileDrawerBtn}>
+                        <Icon type="menu-o" />
+                    </div>
+                    <Drawer
+                        className={styles.mobileDrawer}
+                        closable={false}
+                        title="文章列表"
+                        onClose={() => setIsShowTitleListDrawer(false)}
+                        visible={isShowTitleListDrawer}
+                    >
+                        {list.map(item => (
+                            <div
+                                onClick={() => getTargetArticleId(item.id)}
+                                className={styles.mobileArticleTitle}
+                                key={item.id}
+                            >
+                                {item.title}
+                            </div>
+                        ))}
+                    </Drawer>
+                </>
             )}
         </div>
     )

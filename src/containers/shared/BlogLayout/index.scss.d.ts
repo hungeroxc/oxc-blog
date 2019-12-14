@@ -8,6 +8,7 @@ interface CssExports {
   'clickLink': string;
   'contentLayout': string;
   'desc': string;
+  'drowDownIcon': string;
   'headLeft': string;
   'headNav': string;
   'headerAvatar': string;
@@ -20,7 +21,11 @@ interface CssExports {
   'linkIcon': string;
   'linkItem': string;
   'mainWrapper': string;
+  'menu': string;
+  'menuIcon': string;
   'menuItem': string;
+  'mobileMenu': string;
+  'mobileMenuItem': string;
   'rightCol': string;
   'searchBox': string;
   'siderAvatar': string;
@@ -28,6 +33,7 @@ interface CssExports {
   'siderTitle': string;
   'tag': string;
   'tagList': string;
+  'title': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

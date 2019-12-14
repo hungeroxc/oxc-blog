@@ -21,7 +21,7 @@
         }
 
         .badge {
-            margin-right: 30px;
+            margin-right: 20px;
             margin-bottom: 20px;
 
             :global {
@@ -34,5 +34,11 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .badge {
+        margin-right: 10px !important;
     }
 }

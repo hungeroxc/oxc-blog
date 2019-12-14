@@ -38,6 +38,8 @@
                 cursor: pointer;
                 margin-bottom: 5px;
                 font-size: 15px;
+                word-break: break-all;
+                white-space: pre-line;
 
                 &:hover {
                     background: #f0f2f5;
@@ -134,5 +136,115 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .mobileDrawer {
+        :global {
+            .ant-drawer-body {
+                padding: unset;
+                padding-top: 10px;
+            }
+        }
+
+        .mobileArticleTitle {
+            color: #8590a6;
+            cursor: pointer;
+            padding: 0 10px;
+            margin: 0 5px 5px 5px;
+            font-size: 15px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+    }
+
+    .articleListContainer {
+        .preView {
+            display: none;
+        }
+
+        .articleList {
+            margin-right: 0 !important;
+        }
+    }
+
+    .pagination {
+        margin-right: 0 !important;
+    }
+
+    .articleItem {
+        .mobileTitleWrapper {
+            display: flex;
+            flex-direction: column;
+
+            .title {
+                word-break: break-all;
+                white-space: pre-line;
+                text-align: center;
+            }
+
+            .createTime {
+                padding-left: 0;
+                margin: 10px 0;
+            }
+        }
+
+        .mobildTags {
+            margin-top: 5px;
+            display: flex;
+            flex-flow: row wrap;
+
+            :global {
+                .ant-tag {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+
+    .mobileDrawerBtn {
+        position: fixed;
+        width: 41px;
+        height: 41px;
+        top: 20vh;
+        right: 0;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+        border-radius: 4px 0 0 4px;
+        text-align: center;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mobildTags {
+        margin-top: 5px;
+        display: flex;
+        flex-flow: row wrap;
+
+        :global {
+            .ant-tag {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .mobileTitleWrapper {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            word-break: break-all;
+            white-space: pre-line;
+            text-align: center;
+        }
+
+        .createTime {
+            text-align: center;
+            padding-left: 0 !important;
+            margin: 10px 0;
+        }
     }
 }

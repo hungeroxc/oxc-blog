@@ -74,3 +74,8 @@ export const qiniuUpload = async (file: File, callback: (url: string) => void) =
     const observable = qiniu.upload(file, data.key, data.token, { fname: data.key }, { region: qiniu.region.z2 })
     observable.subscribe(() => {}, uploadFail, uploadSuccess)
 }
+
+// 获取屏幕宽度
+export const getWindowWidth = () => {
+    return document.querySelector('body').clientWidth
+}
