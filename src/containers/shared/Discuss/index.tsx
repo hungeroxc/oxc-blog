@@ -7,6 +7,7 @@ import AuthModal from '@shared/BlogLayout/AuthModal'
 import { publishComment } from '@services/api'
 import { ArticleItem, CommentItem, ReplyItem } from '@views/ArticleList/ArticleItem'
 import DiscussList from './DiscussList'
+import { AuthModalType } from '@shared/BlogLayout/UserInfo'
 
 interface IProps {
     articleData: ArticleItem
@@ -19,7 +20,7 @@ const { TextArea } = Input
 const Discuess = ({ articleData }: IProps) => {
     const [isShowAuthModal, setIsShowAuthModal] = useState<boolean>(false)
     // 弹框类型
-    const [authModalType, setAuthModalType] = useState<string>('login')
+    const [authModalType, setAuthModalType] = useState<AuthModalType>('login')
     // 评论内容
     const [commentContent, setCommentContent] = useState<string>('')
     // 当前组件控制的评论
@@ -35,7 +36,7 @@ const Discuess = ({ articleData }: IProps) => {
         dispatch({ type: 'USER_LOGIN_OUT' })
     }
 
-    const triggerAuthModal = (visible: boolean, type?: string) => {
+    const triggerAuthModal = (visible: boolean, type?: AuthModalType) => {
         setIsShowAuthModal(visible)
         setAuthModalType(type)
     }
