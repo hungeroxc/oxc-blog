@@ -9,6 +9,22 @@
 -   博客地址: [大春春](https://blog.oxcblog.club/)
 -   测试地址: [测试地址](http://blog-test.oxcblog.club/)(管理员权限账密 a / a)
 
+## 搭建过程系列文章
+
+1. [项目及其技术栈介绍](https://www.jianshu.com/p/3b6ba0fa381a)
+2. [前端: 项目初始化](https://www.jianshu.com/p/dd9037db20f5)
+3. [前端: 使用 Sass 和 Antd](https://www.jianshu.com/p/815c3810c7a4)
+4. [前端: 开发体验优化](https://www.jianshu.com/p/edfd9a8b5d33)
+5. [前端: 搭建路由和状态管理](https://www.jianshu.com/p/1cf460e0b810)
+6. [前端: 支持 Axios](https://www.jianshu.com/p/a18c8949420c)
+7. [前端: 打包与环境变量设置](https://www.jianshu.com/p/ae9b23cf02d9)
+8. [前端: 团队代码规范](https://www.jianshu.com/p/fbd45a1dde08)
+9. [后端: 项目初始化和使用 Koa 相关](https://www.jianshu.com/p/d4b6799cd272)
+10. [后端: 使用 TypeORM 和 MySQL](https://www.jianshu.com/p/ee5ecc310e23)
+11. [部署: 使用 nginx 部署前端项目](https://www.jianshu.com/p/3ecd75f69bd6)
+12. [部署: 后端部署](https://www.jianshu.com/p/9bf9e6ee1f6a)
+13. [部署: 使用 jenkins 自动化部署](https://www.jianshu.com/p/add0de676b5a)
+
 ### 技术栈
 
 -   前端:
