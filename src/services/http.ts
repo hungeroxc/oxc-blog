@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, Method } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { message } from 'antd'
 import qs from 'qs'
 
@@ -13,11 +13,14 @@ interface HttpRequest {
     put?: Request
 }
 
+type Method = 'get' | 'post' | 'delete' | 'put'
+
 const http: HttpRequest = {}
 const methods: Method[] = ['get', 'post', 'delete', 'put']
+const appEnv: string = process.env.APP_ENV
 
 const DEFAULTBASEURL = {
-    baseURL: baseUrls[process.env.APP_ENV].BASE_URL
+    baseURL: baseUrls[appEnv].BASE_URL
 }
 
 methods.forEach(v => {

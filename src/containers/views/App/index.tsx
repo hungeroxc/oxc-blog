@@ -7,6 +7,7 @@ import menu from './routerMap'
 import { useUserStore, useTagStore } from '@store/index'
 import PageLoading from '@shared/PageLoading'
 import { getTagList as getTagListApi } from '@services/api'
+import { RouterMenuItem } from './routerMap'
 
 const App = () => {
     const { dispatch } = useUserStore()
@@ -50,14 +51,14 @@ const App = () => {
         getTagList()
     }, [])
 
-    const renderRoutes = (routeMenu, path: string) => {
-        const children = []
-        const renderRoute = (item, routePath: string) => {
+    const renderRoutes = (routeMenu: RouterMenuItem[], path: string) => {
+        const children: JSX.Element[] = []
+        const renderRoute = (item: RouterMenuItem, routePath: string) => {
             const newPath = (item.path ? `${routePath}/${item.path}` : routePath).replace(/\/+/g, '/')
 
             if (item.component && item.children) {
                 const childRoutes = renderRoutes(item.children, newPath)
-                const Component = item.component
+                const Component: React.FC<any> = item.component
                 children.push(
                     <Route
                         key={newPath}
@@ -68,7 +69,7 @@ const App = () => {
             } else if (item.component) {
                 children.push(<Route key={newPath} component={item.component} path={newPath} exact />)
             } else if (item.children) {
-                item.children.forEach(route => renderRoutes(route, newPath))
+                item.children.forEach(route => renderRoute(route, newPath))
             }
         }
 
@@ -77,6 +78,8 @@ const App = () => {
     }
 
     const routesNode = renderRoutes(menu, '/')
+
+    console.log(routesNode)
 
     return (
         <Suspense fallback={<PageLoading />}>

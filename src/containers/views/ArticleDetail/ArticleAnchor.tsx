@@ -18,7 +18,7 @@ const { Link } = Anchor
 const getAnchorList = (value: string) => {
     const reg = /<(h[1-6])[\s\S]+?(?=<\/\1>)/g
     const reg2 = /<.+?>/g
-    const list = []
+    const list: AnchorItem[] = []
     const pushItem = (arr: AnchorItem[], item: AnchorItem) => {
         const len = arr.length
         const matchItem = arr[len - 1]

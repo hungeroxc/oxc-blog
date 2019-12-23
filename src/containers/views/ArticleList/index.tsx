@@ -10,6 +10,11 @@ import { decodeQuery, getWindowWidth } from '@utils/index'
 import { useGetListData } from '@utils/hooks'
 import { getArticleList } from '@services/api'
 
+interface SearchQuery {
+    page: number
+    keyword?: string
+}
+
 const pageSize = 10
 
 const ArticleList = ({ history, location }: RouteComponentProps) => {
@@ -46,9 +51,9 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
 
     // 改变页码
     const changePage = (p: number) => {
-        const urlParams = decodeQuery<{ page: number; keyword: string }>(location.search)
-        const params = !!location.search ? { ...urlParams, page: p } : { page: p }
-        let url
+        const urlParams = decodeQuery(location.search)
+        const params: PlainObj & SearchQuery = !!location.search ? { ...urlParams, page: p } : { page: p }
+        let url: string
         Object.keys(params).forEach(key => {
             url = !url ? `?${key}=${params[key]}` : `${url}&${key}=${params[key]}`
         })
@@ -56,11 +61,11 @@ const ArticleList = ({ history, location }: RouteComponentProps) => {
     }
 
     useEffect(() => {
-        const { page, keyword } = decodeQuery<{ page: number; keyword: string }>(location.search)
+        const { page, keyword } = decodeQuery(location.search)
         getList(!!page ? page : 1, keyword)
     }, [location.search])
 
-    const { page, keyword } = decodeQuery<{ page: number; keyword: string }>(location.search)
+    const { page, keyword } = decodeQuery(location.search)
 
     return (
         <div className={styles.article}>

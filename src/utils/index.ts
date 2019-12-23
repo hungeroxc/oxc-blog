@@ -13,7 +13,6 @@ export const markdownToHtml = (text: string, isGuardXss = false) => {
         gfm: true,
         pedantic: false,
         sanitize: false,
-        tables: true,
         breaks: true,
         smartLists: true,
         smartypants: true,
@@ -23,8 +22,8 @@ export const markdownToHtml = (text: string, isGuardXss = false) => {
     })
 }
 
-export const decodeQuery = <T>(value: string): T => {
-    const params = {} as T
+export const decodeQuery = (value: string) => {
+    const params: PlainObj = {}
     const paramsStr = value.replace(/\.*\?/, '')
     paramsStr.split('&').forEach(v => {
         const d = v.split('=')
@@ -34,7 +33,7 @@ export const decodeQuery = <T>(value: string): T => {
 }
 
 export const getTagColor = (tagList: ITagStore.TagItem[], tags: { id: number; value: string }[]) => {
-    const list = []
+    const list: ITagStore.TagItem[] = []
     tagList.forEach(item => {
         tags.forEach(v => {
             if (v.id === item.id) {
@@ -61,7 +60,7 @@ export const qiniuUpload = async (file: File, callback: (url: string) => void) =
         data.key = newName
     }
 
-    const uploadSuccess = (res: QiniuRes) => {
+    const uploadSuccess = (res: qiniu.CompletedResult) => {
         if (!!res && res.key) {
             callback(QN_URL_PREFIX + res.key)
         }

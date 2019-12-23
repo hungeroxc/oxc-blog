@@ -30,7 +30,11 @@ const UserManager = () => {
     const [params, setParams] = useState<FetchParams.GetUserList>(null)
     const [cancelRequire, setCancelRequire] = useState<boolean>(true)
 
-    const { list, total, page, loading } = useGetListData(getUserList, params, cancelRequire)
+    const { list, total, page, loading } = useGetListData<UserItem, FetchParams.GetUserList>(
+        getUserList,
+        params,
+        cancelRequire
+    )
 
     const getList = async () => {
         const params = {
@@ -122,7 +126,7 @@ const UserManager = () => {
                             rowKey="id"
                             scroll={{ y: height - 220, x: 700 }}
                             dataSource={list}
-                            onChange={(p, f, s) => changePageAndSorter(p, s)}
+                            onChange={(p, f, s: SorterResult<UserItem>) => changePageAndSorter(p, s)}
                         >
                             <Column<UserItem> width={200} key="username" dataIndex="username" title="用户名" />
                             <Column<UserItem>

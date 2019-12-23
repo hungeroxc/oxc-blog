@@ -5,15 +5,16 @@ import { FormComponentProps } from 'antd/lib/form'
 
 import { register, login } from '@services/api'
 import { useUserStore } from '@store/index'
+import { AuthModalType } from './UserInfo'
 
 const api = { register, login }
 
 const FormItem = Form.Item
 
 interface IProps extends FormComponentProps, ModalProps {
-    authModalType: string
+    authModalType: 'login' | 'register'
     closeModal: () => void
-    triggerAuthModal: (visible: boolean, type?: string) => void
+    triggerAuthModal: (visible: boolean, type?: AuthModalType) => void
 }
 
 const AuthModal = ({ visible, form, authModalType, closeModal, triggerAuthModal }: IProps) => {

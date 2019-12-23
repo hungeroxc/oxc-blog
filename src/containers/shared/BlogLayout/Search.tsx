@@ -13,7 +13,7 @@ const Search = ({ history, location }: RouteComponentProps) => {
     }
 
     useEffect(() => {
-        const { keyword } = decodeQuery<{ keyword: string }>(location.search)
+        const { keyword } = decodeQuery(location.search)
         setKeyword(keyword)
     }, [location.search])
 

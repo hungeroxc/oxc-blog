@@ -1,7 +1,8 @@
 import React, { Component, ComponentProps } from 'react'
 import ReactDOM from 'react-dom'
 import hljs from 'highlight.js'
-import javascript from 'highlight.js/lib/languages/javascript'
+// @ts-ignore
+import javascript from 'highlight.js/lib/languages/javascript' // highlight类型文件中无此文件签名导致严格模式下报错
 import 'highlight.js/styles/atom-one-light.css'
 import fundebug from 'fundebug-javascript'
 
@@ -19,17 +20,17 @@ fundebug.init({
 
 // 针对react16之后版本，若react本身报错的话需要使用该组件
 class ErrorBoundary extends Component<ComponentProps<any>, { hasError: boolean }> {
-    constructor(props) {
+    constructor(props: any) {
         super(props)
         this.state = { hasError: false }
     }
 
-    componentDidCatch(error, info) {
+    componentDidCatch(error: Error, info: any) {
         this.setState({ hasError: true })
         // 将component中的报错发送到Fundebug
         fundebug.notifyError(error, {
             metaData: {
-                info: info
+                info
             }
         })
     }

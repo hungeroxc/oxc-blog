@@ -2,10 +2,10 @@ import React, { lazy } from 'react'
 
 import BlogLayout from '@shared/BlogLayout'
 
-interface RouterMenuItem {
+export interface RouterMenuItem {
     path: string
     icon?: string
-    component: React.ReactNode
+    component: React.FC<any>
     title?: string
     children?: RouterMenuItem[]
     isPrivate?: boolean

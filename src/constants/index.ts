@@ -1,6 +1,6 @@
 // development  production
 
-export const baseUrls = {
+export const baseUrls: PlainObj = {
     dev: {
         BASE_URL: 'http://127.0.0.1:3001/api'
     },

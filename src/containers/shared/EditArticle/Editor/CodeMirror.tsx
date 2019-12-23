@@ -18,7 +18,7 @@ const CodeMirror = ({ value, onChangeInput }: IProps) => {
     const codeMirrorContainer = useRef(null)
     const codeMirror = useRef(null)
 
-    const onChange = (editor, data, v: string) => {
+    const onChange = (editor: CodeMirror.Editor, data: CodeMirror.EditorChange, v: string) => {
         onChangeInput(v)
     }
 

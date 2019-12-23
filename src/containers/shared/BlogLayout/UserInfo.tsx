@@ -6,19 +6,21 @@ import styles from './index.scss'
 import AuthModal from './AuthModal'
 import { useUserStore } from '@store/index'
 
+export type AuthModalType = 'login' | 'register'
+
 const MenuItem = Menu.Item
 
 const UserInfo = ({ history }: RouteComponentProps) => {
     const [authVisible, setAuthVisible] = useState<boolean>(false)
     // 弹框类型
-    const [authModalType, setAuthModalType] = useState<string>('login')
+    const [authModalType, setAuthModalType] = useState<AuthModalType>('login')
 
     const {
         state: { userInfo },
         dispatch
     } = useUserStore()
 
-    const triggerAuthModal = (visible: boolean, type?: string) => {
+    const triggerAuthModal = (visible: boolean, type?: AuthModalType) => {
         setAuthVisible(visible)
         setAuthModalType(type)
     }

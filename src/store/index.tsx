@@ -18,6 +18,7 @@ export { useTagStore } from './tag'
  */
 const providers = [UserProvider, TagProvider]
 
-const Provider = props => providers.reduceRight((children, Parent) => <Parent>{children}</Parent>, props.children)
+const Provider = (props: any) =>
+    providers.reduceRight((children, Parent) => <Parent>{children}</Parent>, props.children)
 
 export default Provider
