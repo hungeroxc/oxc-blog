@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { Input } from 'antd'
 
 import styles from './index.scss'
-import Editor from './Editor'
-import Tags from './Tags'
+import EditorComponent from './Editor'
+import TagsComponent from './Tags'
 import { useTagStore } from '@store/index'
+
+const Tags = memo(TagsComponent)
+
+const Editor = memo(EditorComponent)
 
 interface IProps {
     changeInputValue: (v: string) => void

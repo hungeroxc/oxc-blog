@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import classnames from 'classnames'
 import { Divider, Drawer, Icon as AntdIcon } from 'antd'
@@ -11,9 +11,11 @@ import { ArticleItem } from './../ArticleList/ArticleItem'
 import ArticleAnchor from './ArticleAnchor'
 import Icon from '@shared/Icon'
 import ArticleTags from '@shared/ArticleTags'
-import Discuss from '@shared/Discuss'
+import DiscussComponent from '@shared/Discuss'
 import { useTagStore } from '@store/index'
 import { getTagColor, getWindowWidth } from '@utils/index'
+
+const Discuss = memo(DiscussComponent)
 
 const ArticleDetail = ({ match }: RouteComponentProps<{ id: string }>) => {
     const [loading, setLoading] = useState<boolean>(true)
