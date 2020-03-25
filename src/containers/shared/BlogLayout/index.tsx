@@ -5,6 +5,7 @@ import styles from './index.scss'
 import Header from './Header'
 import SiderBar from './SiderBar'
 import PageLoading from '@shared/PageLoading'
+import Footer from './Footer'
 
 const BlogLayout: React.FC = ({ children }) => {
     const siderLayout = { xxl: 4, xl: 5, lg: 5, sm: 0, xs: 0 }
@@ -23,6 +24,7 @@ const BlogLayout: React.FC = ({ children }) => {
                     </div>
                 </Col>
             </Row>
+            <Footer />
         </Layout>
     )
 }

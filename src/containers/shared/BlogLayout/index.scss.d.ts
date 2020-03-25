@@ -9,6 +9,7 @@ interface CssExports {
   'contentLayout': string;
   'desc': string;
   'drowDownIcon': string;
+  'footer': string;
   'headLeft': string;
   'headNav': string;
   'headerAvatar': string;
@@ -27,6 +28,7 @@ interface CssExports {
   'mobileMenu': string;
   'mobileMenuItem': string;
   'rightCol': string;
+  'rightNumber': string;
   'searchBox': string;
   'siderAvatar': string;
   'siderBar': string;

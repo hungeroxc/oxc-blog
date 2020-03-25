@@ -221,6 +221,20 @@
             }
         }
     }
+
+    .footer {
+        height: 40px;
+        background-color: #f0f0f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .rightNumber {
+            color: #a1a1a3;
+            font-size: 12px;
+            margin-right: 20px;
+        }
+    }
 }
 
 @media only screen and (max-width: 576px) {
@@ -266,6 +280,10 @@
         }
 
         .searchBox {
+            display: none;
+        }
+
+        .footer {
             display: none;
         }
     }
