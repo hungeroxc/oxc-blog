@@ -85,7 +85,7 @@
         "fundebug-javascript": "^2.0.0",
         "highlight.js": "^9.15.6",
         "jwt-decode": "^2.2.0",
-        "marked": "^0.7.0",
+        "marked": "^4.0.10",
         "qiniu-js": "^2.5.5",
         "qs": "^6.9.0",
         "react": "^16.11.0",
