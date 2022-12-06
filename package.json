@@ -87,7 +87,7 @@
         "jwt-decode": "^2.2.0",
         "marked": "^0.7.0",
         "qiniu-js": "^2.5.5",
-        "qs": "^6.9.0",
+        "qs": "^6.9.7",
         "react": "^16.11.0",
         "react-codemirror2": "^6.0.0",
         "react-dom": "^16.11.0",
